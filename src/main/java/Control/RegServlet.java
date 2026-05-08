@@ -19,6 +19,18 @@ public class RegServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String nome = request.getParameter("nome");
+		String cognome = request.getParameter("cognome");
+		String nickname = request.getParameter("nickname");
+		String email = request.getParameter("email");
+		String password = request.getParameter("pass");
+		String confermaPass = request.getParameter("passCon");
+		
+		
+		
+		
+		
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/Registrazione.jsp");
 		dispatcher.forward(request, response);
 	}

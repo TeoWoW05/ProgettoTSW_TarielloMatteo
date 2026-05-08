@@ -21,9 +21,14 @@
 <label for="email">Email</label><br>
 <input type="email" name="email"><br>
 <label for="pass">Password</label><br>
-<input type="password" name="pass"><br> <br>
+<input type="password" name="pass"><br>
+<label for="passCon">Conferma Password</label><br>
+<input type="password" name="passCon"><br>
 
 
+
+
+ <br>
 <input type="submit" value="Invio">
 
 
