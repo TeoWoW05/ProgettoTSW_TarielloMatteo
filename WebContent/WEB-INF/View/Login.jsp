@@ -5,27 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Registrazione - Piece B Piece</title>
+<title>Login - Piece B Piece</title>
 <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/LoginReg.css">
 </head>
 <body>
 
-<h1>Registrazione</h1>
+<h1>Login</h1>
 
 <form action="" method="post">
 
-<div class="label">
-<label for="nome">Nome</label>
-<input type="text" name="nome">
-</div>
-<div class="label">
-<label for="cognome">Cognome</label>
-<input type="text" name="cognome">
-</div>
-<div class="label">
-<label for="nickname">Nickname</label>
-<input type="text" name="nickname">
-</div>
 <div class="label">
 <label for="email">Email</label>
 <input type="email" name="email">
@@ -34,13 +22,6 @@
 <label for="pass">Password</label>
 <input type="password" name="pass">
 </div>
-<div class="label">
-<label for="passCon">Conferma Password</label>
-<input type="password" name="passCon">
-</div>
-
-
-
 
  <br>
 
