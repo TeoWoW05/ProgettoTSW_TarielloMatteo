@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Login - Piece B Piece</title>
 <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/LoginReg.css">
+<script src="${pageContext.request.contextPath}/javascript/RegLog.js"></script>
 </head>
 <body>
 
@@ -20,9 +21,12 @@
 </div>
 <div class="label">
 <label for="pass">Password</label>
-<input type="password" name="pass">
+<input type="password" name="pass" id="mostraPass">
 </div>
-
+<div id="mostraPass">
+<input type="checkbox" name="mostraPass" onclick="logPass()">
+<label for="mostraPass">Mostra Password</label>
+</div>
  <br>
 
 <input type="submit" value="Invio">

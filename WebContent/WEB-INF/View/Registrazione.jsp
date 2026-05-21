@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Registrazione - Piece B Piece</title>
 <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/LoginReg.css">
+<script src="${pageContext.request.contextPath}/javascript/RegLog.js"></script>
 </head>
 <body>
 
@@ -32,11 +33,15 @@
 </div>
 <div class="label">
 <label for="pass">Password</label>
-<input type="password" name="pass">
+<input type="password" name="pass" class="pass">
 </div>
 <div class="label">
 <label for="passCon">Conferma Password</label>
-<input type="password" name="passCon">
+<input type="password" name="passCon" class="pass">
+</div>
+<div id="mostraPass">
+<input type="checkbox" name="mostraPass" onclick="regPass()">
+<label for="mostraPass">Mostra Password</label>
 </div>
 
 

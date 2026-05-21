@@ -2,7 +2,6 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--black);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -27,7 +26,7 @@ form {
     padding: 40px;
     border-radius: 15px;
     box-shadow: var(--box-shadow);
-    width: 50%;
+    width: 70%;
     max-width: 500px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -83,27 +82,40 @@ label,input{
 
 label{
 	text-align:right;
-	width:75px;
+	width:140px;
 	padding-right:20px;
 	vertical-align:middle;
 	display: table-cell;
 	padding-top: 0px;
 	margin-top: 0px;
+	
+}
+
+#mostraPass{
+	 color:white;
+   	font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+input[type=checkbox]{
+	margin-right:-50px;
+	margin-left:-10px;
 }
 
 
-
 input {
-    width: 50%;
+    width: 40%;
     padding: 6px 8px;
-    background: var(--white);
-    border: 2px solid var(black);
+    background: black;
+    border: 2px solid lightgrey;
     border-radius: 8px;
     font-size: 1rem;
     color: var(--black);
     transition: var(--transition);
     font-family: inherit;
-    /*margin-top:5px;*/
+    margin-top:5px;
 }
 
 input:focus {
