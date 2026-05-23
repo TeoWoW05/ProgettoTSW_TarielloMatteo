@@ -13,20 +13,36 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
 import DatabaseConnection.DatabaseManager;
+
+import Dao.DaoUtente;
+import Dao.DaoUtenteInterface;
+import Model.Utente;
 
 @WebServlet("/RegServlet")
 public class RegServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private DaoUtenteInterface utenteDao;
+	
+	@Override
+	public void init() throws ServletException{
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+		
+		if(ds == null) {
+			throw new ServletException("DataSource non disponibile nel contesto");
+		}
+		utenteDao = new DaoUtente(ds);
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request,response);
+		request.getRequestDispatcher("/WEB-INF/View/Registrazione.jsp").forward(request, response);
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
 		
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
@@ -56,7 +72,7 @@ public class RegServlet extends HttpServlet {
 		
 		if(password.length() < 6) {
 			request.setAttribute("Errore", "La password deve essere di almeno 6 caratteri!");
-			request.getRequestDispatcher("/View/Registrazione.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/View/Registrazione.jsp").forward(request, response);
 			
 			return;
 		}
@@ -68,56 +84,40 @@ public class RegServlet extends HttpServlet {
 			return;
 		}
 		
-		try(Connection conn = DatabaseManager.getConnection()){
-			
-			String controlloNickname = "SELECT * FROM Utente WHERE nickname = ?";
-			try(PreparedStatement p = conn.prepareStatement(controlloNickname)){
-				p.setString(1, controlloNickname);
-				ResultSet rs = p.executeQuery();
-				if(rs.next()) {
-					request.setAttribute("Errore","Nickname già in uso!");
-					request.getRequestDispatcher("/WEB-INF/View/Registrazione.jsp").forward(request, response);
-					
-					return;
-				}
-			}
-			
-			String controlloEmail = "SELECT * FROM Utente WHERE email = ?";
-            try (PreparedStatement p = conn.prepareStatement(controlloEmail)) {
-                p.setString(1, email);
-                ResultSet rs = p.executeQuery();
-                if (rs.next()) {
-                    request.setAttribute("Errore", "Email già registrata!");
-                    request.getRequestDispatcher("/WEB-INF/View/Registrazione.jsp").forward(request, response);
-                    return;
-                }
+		try {
+            // Verifica se email esiste già (chiave primaria)
+            if (utenteDao.existsByEmail(email)) {
+                request.setAttribute("Errore", "Email già registrata!");
+                request.getRequestDispatcher("/WEB-INF/View/Registrazione.jsp").forward(request, response);
+                return;
             }
             
-            String sql = "INSERT INTO Utente (email, nome, cognome, nickname, password) VALUES (?, ?, ?, ?, ?)";
-            try (PreparedStatement p = conn.prepareStatement(sql)) {
-                p.setString(1, email);
-                p.setString(2, nome);
-                p.setString(3, cognome);
-                p.setString(4, nickname);
-                p.setString(5, password); // TODO: Hash della password!
-                
-                int righeInserite = p.executeUpdate();
-                
-                if (righeInserite > 0) {
-                    // Registrazione riuscita
-                    response.sendRedirect("/WEB-INF/View/Login.jsp?registrato=true");
-                } else {
-                    request.setAttribute("Errore", "Errore durante la registrazione");
-                    request.getRequestDispatcher("/WEB-INF/View/Registrazione.jsp").forward(request, response);
-                }
+            // Verifica se nickname esiste già
+            if (utenteDao.existsByNickname(nickname)) {
+                request.setAttribute("Errore", "Nickname già in uso!");
+                request.getRequestDispatcher("/WEB-INF/View/Registrazione.jsp").forward(request, response);
+                return;
             }
             
-		}catch (SQLException e) {
+            // Crea e salva l'utente
+            Utente utente = new Utente();
+            utente.setEmail(email);
+            utente.setName(nome);
+            utente.setCognome(cognome);
+            utente.setNickname(nickname);
+            utente.setPass(password);
+            
+            utenteDao.doSave(utente);
+            
+            response.sendRedirect(request.getContextPath() + "/LoginServlet?registrato=true");
+            
+        } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("Errore", "Errore del database: " + e.getMessage());
             request.getRequestDispatcher("/WEB-INF/View/Registrazione.jsp").forward(request, response);
         }
-		
-	}
-
+		response.sendRedirect(request.getContextPath() + "/LoginServlet?registrato=true");
+    }
+    
+	
 }

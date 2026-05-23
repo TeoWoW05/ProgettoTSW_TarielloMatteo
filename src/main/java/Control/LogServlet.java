@@ -13,88 +13,64 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
 import java.sql.Connection;
 
 import DatabaseConnection.DatabaseManager;
 import Model.Utente;
+import Dao.DaoUtenteInterface;
+import Dao.DaoUtente;
 
-/**
- * Servlet implementation class LogServlet
- */
+
 @WebServlet("/LogServlet")
 public class LogServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
+	
+	private DaoUtenteInterface utenteDao;
+	
+	 @Override
+	    public void init() throws ServletException {
+	        DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+	        if (ds == null) {
+	            throw new ServletException("DataSource non disponibile nel contesto");
+	        }
+	        utenteDao = new DaoUtente(ds);
+	    }
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request,response);
+		request.getRequestDispatcher("/WEB-INF/View/Login.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
-        String username = request.getParameter("username");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
         
         // Validazione
-        if (username == null || username.trim().isEmpty() ||
+        if (email == null || email.trim().isEmpty() ||
             password == null || password.trim().isEmpty()) {
             
-            request.setAttribute("errore", "Inserisci username/email e password!");
+            request.setAttribute("errore", "Inserisci email e password!");
             request.getRequestDispatcher("/WEB-INF/View/Login.jsp").forward(request, response);
             return;
         }
         
-        // Cerco l'utente nel database (per username o email)
-        String sql = "SELECT * FROM Utente WHERE nickname = ? OR email = ?";
-        
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try {
+            Utente utente = utenteDao.doRetrieveByKey(email);
             
-            pstmt.setString(1, username);
-            pstmt.setString(2, username);
-            
-            ResultSet rs = pstmt.executeQuery();
-            
-            if (rs.next()) {
-                // Utente trovato, controllo password
-                String dbPassword = rs.getString("password");
+            if (utente != null && utente.getPass().equals(password)) {
+                HttpSession session = request.getSession();
+                session.setAttribute("utente", utente);
+                session.setAttribute("loggedIn", true);
+                session.setAttribute("email", utente.getEmail());
+                session.setAttribute("nickname", utente.getNickname());
                 
-                // TODO: Confronto con hash della password!
-                if (dbPassword.equals(password)) {
-                    
-                    // Login riuscito - Creo l'oggetto Utente
-                    Utente utente = new Utente();
-                    utente.setName(rs.getString("nome"));
-                    utente.setCognome(rs.getString("cognome"));
-                    utente.setNickname(rs.getString("nickname"));
-                    utente.setEmail(rs.getString("email"));
-                    
-                    // Salvo l'utente in sessione
-                    HttpSession session = request.getSession();
-                    session.setAttribute("utente", utente);
-                    session.setAttribute("loggedIn", true);
-                    session.setAttribute("nickname", utente.getNickname());
-                    
-                    // Reindirizzo alla home o alla pagina precedente
-                    String redirectUrl = (String) session.getAttribute("redirectAfterLogin");
-                    if (redirectUrl != null) {
-                        session.removeAttribute("redirectAfterLogin");
-                        response.sendRedirect(redirectUrl);
-                    } else {
-                        response.sendRedirect("/WEB-INF/View/HomePage.jsp");
-                    }
-                    
-                } else {
-                    // Password errata
-                    request.setAttribute("errore", "Password errata!");
-                    request.getRequestDispatcher("/WEB-INF/View/Login.jsp").forward(request, response);
-                }
+                response.sendRedirect(request.getContextPath() + "/WEB-INF/View/HomePage.jsp");
             } else {
-                // Utente non trovato
-                request.setAttribute("errore", "Username/email non trovato!");
+                request.setAttribute("errore", "Username/email o password errati");
                 request.getRequestDispatcher("/WEB-INF/View/Login.jsp").forward(request, response);
             }
             
