@@ -13,7 +13,21 @@
 
 <h1>Login</h1>
 
-<form action="" method="post">
+<%
+String errore = (String) request.getAttribute("errore");
+String registrato = request.getParameter("registrato");
+if (errore != null) {
+%>
+    <div style="color: red; text-align: center; margin-bottom: 20px;"><%= errore %></div>
+<%
+} else if (registrato != null) {
+%>
+    <div style="color: green; text-align: center; margin-bottom: 20px;">Registrazione completata! Effettua il login.</div>
+<%
+}
+%>
+
+<form action="${pageContext.request.contextPath}/LogServlet" method="post">
 
 <div class="label">
 <label for="email">Email</label>

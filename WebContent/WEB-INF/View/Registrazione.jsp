@@ -13,7 +13,18 @@
 
 <h1>Registrazione</h1>
 
-<form action="" method="post">
+<%
+String errore = (String) request.getAttribute("Errore");
+if (errore != null) {
+%>
+    <div class="error-message" style="display:block; color:red; text-align:center; margin-bottom:20px;">
+        <%= errore %>
+    </div>
+<%
+}
+%>
+
+<form action="${pageContext.request.contextPath}/RegServlet" method="post">
 
 <div class="label">
 <label for="nome">Nome</label>

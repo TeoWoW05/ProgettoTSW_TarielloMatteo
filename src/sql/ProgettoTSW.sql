@@ -9,6 +9,7 @@ CREATE TABLE Utente (
     email VARCHAR(100) PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
+    nickname VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL  -- In produzione: salvare hash, non password in chiaro
 );
 
@@ -73,5 +74,5 @@ CREATE TABLE Dettaglio_Ordine (
     prezzo_unitario DECIMAL(10,2) NOT NULL,  -- Prezzo al momento dell'acquisto
     PRIMARY KEY (ordine_id, prodotto_id),
     FOREIGN KEY (ordine_id) REFERENCES Ordine(id) ON DELETE CASCADE,
-    FOREIGN KEY (prodotto_id) REFERENCES Prodotto(id) ON DELETE CASCADE
+    FOREIGN KEY (prodotto_id) REFutenteERENCES Prodotto(id) ON DELETE CASCADE
 );
