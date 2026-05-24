@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Piece-B-Piece</title>
+<title>Piece-B-Piece - HomePage</title>
 </head>
 <body>
+<%@ include file ="Header.jsp" %>
 
 
-
-
+<%@ include file ="Footer.jsp" %>
 </body>
 </html>

@@ -38,7 +38,7 @@
     </div>
     
     <div class="footer-bottom">
-        <p>&copy; 2026 Piece B Piece. Tutti i diritti riservati.</p>
+        <p>&copy; 2026 Piece-B-Piece. Tutti i diritti riservati.</p>
     </div>
 </footer>
 </body>

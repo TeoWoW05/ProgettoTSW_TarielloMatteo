@@ -8,8 +8,11 @@
 <title>Registrazione - Piece B Piece</title>
 <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/LoginReg.css">
 <script src="${pageContext.request.contextPath}/javascript/RegLog.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/Navbar.js"></script>
 </head>
 <body>
+
+<%@ include file ="Header.jsp" %>
 
 <h1>Registrazione</h1>
 
@@ -24,7 +27,7 @@ if (errore != null) {
 }
 %>
 
-<form action="${pageContext.request.contextPath}/RegServlet" method="post">
+<form action="${pageContext.request.contextPath}/RegServlet" method="post" class="reglog">
 
 <div class="label">
 <label for="nome">Nome</label>

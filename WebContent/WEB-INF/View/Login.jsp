@@ -8,8 +8,11 @@
 <title>Login - Piece B Piece</title>
 <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/LoginReg.css">
 <script src="${pageContext.request.contextPath}/javascript/RegLog.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/Navbar.js"></script>
 </head>
 <body>
+
+<%@ include file ="Header.jsp" %>
 
 <h1>Login</h1>
 
@@ -27,7 +30,7 @@ if (errore != null) {
 }
 %>
 
-<form action="${pageContext.request.contextPath}/LogServlet" method="post">
+<form action="${pageContext.request.contextPath}/LogServlet" method="post" class="reglog">
 
 <div class="label">
 <label for="email">Email</label>
