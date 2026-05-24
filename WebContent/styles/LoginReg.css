@@ -1,14 +1,21 @@
 @charset "UTF-8";
 
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
     position: relative;
     overflow-x: hidden;
+    flex-direction: column;
+    
     
     background-image: url('../immagini/backgroundRegLog.jpg');
     background-size: cover;
@@ -148,4 +155,46 @@ input[type="submit"]:hover {
     transform: translateY(-2px);
     color: white;
     background: lightgrey;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* Se preferisci un footer più minimale */
+.site-footer-minimal {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    text-align: center;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.site-footer-minimal p {
+    color: #999999;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.site-footer-minimal a {
+    color: #cccccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.site-footer-minimal a:hover {
+    color: #ffffff;
 }

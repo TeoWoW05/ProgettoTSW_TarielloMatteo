@@ -49,5 +49,7 @@ if (errore != null) {
 
 </form>
 
+<%@ include file ="Footer.jsp" %>
+
 </body>
 </html>

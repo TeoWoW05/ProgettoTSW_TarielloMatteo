@@ -109,15 +109,15 @@ public class RegServlet extends HttpServlet {
             
             utenteDao.doSave(utente);
             
-            response.sendRedirect(request.getContextPath() + "/LoginServlet?registrato=true");
+            response.sendRedirect(request.getContextPath() + "/LogServlet?registrato=true");
+            return;
             
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("Errore", "Errore del database: " + e.getMessage());
             request.getRequestDispatcher("/WEB-INF/View/Registrazione.jsp").forward(request, response);
+            return;
         }
-		response.sendRedirect(request.getContextPath() + "/LoginServlet?registrato=true");
     }
     
-	
 }
