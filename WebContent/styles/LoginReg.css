@@ -16,7 +16,6 @@ body {
     overflow-x: hidden;
     flex-direction: column;
     
-    
     background-image: url('../immagini/backgroundRegLog.jpg');
     background-size: cover;
     background-position: center;
@@ -27,23 +26,26 @@ body {
     background-blend-mode: overlay;
 }
 
+
 .reglog {
-  
     backdrop-filter: blur(10px);
     padding: 40px;
     border-radius: 15px;
     box-shadow: var(--box-shadow);
-    width: 70%;
+    width: 90%;                
     max-width: 500px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    display: table;
+    display: block;            
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
-.reglog form:hover {
-     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-     background: rgba(0.5, 0.5, 0.5, 0.98);
+.reglog:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    background: rgba(0.5, 0.5, 0.5, 0.98);
 }
+
 h1 {
     text-align: center;
     color: #ffffff;
@@ -69,93 +71,94 @@ h1::after {
     background: #ffffff;
 }
 
+
 .reglog .label {
-    
-    color:white;
-   	font-weight: 600;
+    color: white;
+    font-weight: 600;
     font-size: 0.85rem;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    display: table-row;
+    display: flex;           
+    align-items: center;
+    margin-bottom: 15px;
 }
 
-
-.reglog label,input{
-	display:block;
-	width: 150px;
-	float: left;
-	margin-bottom:10px;
+.reglog .label label {
+    width: 140px;
+    text-align: right;
+    padding-right: 20px;
+    flex-shrink: 0;
+    display: block;
+    color: white;
 }
 
-.reglog label{
-	text-align:right;
-	width:140px;
-	padding-right:20px;
-	vertical-align:middle;
-	display: table-cell;
-	padding-top: 0px;
-	margin-top: 0px;
-	
-}
-
-.reglog #mostraPass{
-	 color:white;
-   	font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-}
-
-.reglog input[type=checkbox]{
-	margin-right:-50px;
-	margin-left:-10px;
-}
-
-
-.reglog input {
-    width: 40%;
-    padding: 6px 8px;
+.reglog .label input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
     background: black;
     border: 2px solid lightgrey;
     border-radius: 8px;
     font-size: 1rem;
-    color: var(--black);
-    transition: var(--transition);
+    color: white;
+    transition: all 0.3s ease;
     font-family: inherit;
-    margin-top:5px;
 }
+
 
 .reglog input:focus {
     outline: none;
-    border-color: var(--black);
-    background: var(--white);
-  
+    border-color: #ffffff;
+    background: #222;
 }
 
 .reglog input:hover:not(:focus) {
-    border-color: var(--gray-dark);
+    border-color: #aaa;
 }
 
-.reglog input[type=submit]{
-	background: white;
-    color: var(--white);
-    border: 2px solid var(--black);
+
+.reglog #mostraPass {
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.reglog #mostraPass input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    order: -1;
+}
+
+.reglog input[type=submit] {
+    width: 100%;
+    background: white;
+    color: black;
+    border: 2px solid black;
     padding: 14px;
     font-size: 1.1rem;
     font-weight: 600;
-    margin-top: 35px;
+    margin-top: 25px;
     cursor: pointer;
     border-radius: 14px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    transition: var(--transition);
-    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
 }
+
 .reglog input[type="submit"]:hover {
     transform: translateY(-2px);
     color: white;
     background: lightgrey;
 }
+
 
 .page-wrapper {
     display: flex;
@@ -171,9 +174,11 @@ h1::after {
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Se preferisci un footer più minimale */
+
 .site-footer-minimal {
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
@@ -181,20 +186,56 @@ h1::after {
     text-align: center;
     margin-top: auto;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.site-footer-minimal p {
-    color: #999999;
-    font-size: 0.85rem;
-    margin: 0;
+@media (max-width: 600px) {
+    .reglog {
+        padding: 25px 20px;
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+
+   
+    .reglog .label {
+        flex-direction: column;
+        align-items: stretch;
+        margin-bottom: 20px;
+    }
+
+    .reglog .label label {
+        width: 100%;
+        text-align: left;
+        padding-right: 0;
+        margin-bottom: 5px;
+    }
+
+    .reglog .label input {
+        width: 100%;
+    }
+
+    .reglog #mostraPass {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .reglog input[type=submit] {
+        font-size: 1rem;
+        padding: 12px;
+    }
 }
 
-.site-footer-minimal a {
-    color: #cccccc;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
+@media (max-width: 400px) {
+    .reglog {
+        padding: 20px 15px;
+    }
 
-.site-footer-minimal a:hover {
-    color: #ffffff;
+    h1 {
+        font-size: 1.7rem;
+    }
 }

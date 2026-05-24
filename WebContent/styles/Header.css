@@ -76,7 +76,7 @@
 .search-bar button {
     position: absolute;
     right: 5px;
-    top: 54%;
+    top: 64%;
     transform: translateY(-50%);
     background: #ffffff;
     border: none;
@@ -136,7 +136,7 @@
     width: 100%;
 }
 
-/* Pulsante toggle mobile */
+
 .mobile-toggle {
     display: none;
     flex-direction: column;
@@ -155,7 +155,7 @@
     transition: 0.3s;
 }
 
-/* Responsive: schermi fino a 768px */
+
 @media (max-width: 768px) {
     .header-container {
         flex-wrap: wrap;
