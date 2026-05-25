@@ -39,6 +39,13 @@ public class LogServlet extends HttpServlet {
 	    }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute("registrazioneCompletata")!= null) {
+			request.setAttribute("messaggioSuccesso","Registrazione effettuata con successo! Ora puoi accedere.");
+			
+			session.removeAttribute("registrazioneCompletata");
+		}
+		
 		request.getRequestDispatcher("/WEB-INF/View/Login.jsp").forward(request, response);
 	}
 
@@ -68,7 +75,7 @@ public class LogServlet extends HttpServlet {
                 session.setAttribute("email", utente.getEmail());
                 session.setAttribute("nickname", utente.getNickname());
                 
-                response.sendRedirect(request.getContextPath() + "/WEB-INF/View/HomePage.jsp");
+                request.getRequestDispatcher("/WEB-INF/View/HomePage.jsp").forward(request, response);
             } else {
                 request.setAttribute("errore", "Username/email o password errati");
                 request.getRequestDispatcher("/WEB-INF/View/Login.jsp").forward(request, response);

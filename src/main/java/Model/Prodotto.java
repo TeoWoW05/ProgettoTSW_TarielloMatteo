@@ -1,82 +1,46 @@
 package Model;
 
-public class Prodotto {
-    // Costruttori
-    public Prodotto() {}
+import java.io.Serializable;
+
+
+public class Prodotto implements Serializable {
+    private static final long serialVersionUID = 1L;
     
-    public Prodotto(String codiceProdotto, String nome, String descrizione, 
-                    double costo, String immagine, int quantitaMagazzino, String nomeCategoria) {
+
+    public Prodotto() {}
+
+    public Prodotto(int codiceProdotto, String nome, String descrizione, float costo, String immagine, int quantitaMagazzino) {
         this.codiceProdotto = codiceProdotto;
         this.nome = nome;
         this.descrizione = descrizione;
         this.costo = costo;
         this.immagine = immagine;
         this.quantitaMagazzino = quantitaMagazzino;
-        this.nomeCategoria = nomeCategoria;
     }
+
+    // getter e setter
+    public int getCodiceProdotto() { return codiceProdotto; }
+    public void setCodiceProdotto(int codiceProdotto) { this.codiceProdotto = codiceProdotto; }
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public String getDescrizione() { return descrizione; }
+    public void setDescrizione(String descrizione) { this.descrizione = descrizione; }
+
+    public float getCosto() { return costo; }
+    public void setCosto(float costo) { this.costo = costo; }
+
+    public String getImmagine() { return immagine; }
+    public void setImmagine(String immagine) { this.immagine = immagine; }
+
+    public int getQuantitaMagazzino() { return quantitaMagazzino; }
+    public void setQuantitaMagazzino(int quantitaMagazzino) { this.quantitaMagazzino = quantitaMagazzino; }
     
-    // Getter e Setter
-    public String getCodiceProdotto() { 
-    	return codiceProdotto; 
-    	}
-    
-    public void setCodiceProdotto(String codiceProdotto) { 
-    	this.codiceProdotto = codiceProdotto; 
-    	}
-    
-    public String getNome() { 
-    	return nome; 
-    	}
-    
-    public void setNome(String nome) { 
-    	this.nome = nome; 
-    	}
-    
-    public String getDescrizione() { 
-    	return descrizione; 
-    	}
-    public void setDescrizione(String descrizione) { 
-    	this.descrizione = descrizione; 
-    	}
-    
-    public double getCosto() { 
-    	return costo; 
-    	}
-    
-    public void setCosto(double costo) { 
-    	this.costo = costo; 
-    	}
-    
-    public String getImmagine() { 
-    	return immagine; 
-    	}
-    
-    public void setImmagine(String immagine) { 
-    	this.immagine = immagine; 
-    	}
-    
-    public int getQuantitaMagazzino() { 
-    	return quantitaMagazzino; 
-    	}
-    
-    public void setQuantitaMagazzino(int quantitaMagazzino) { 
-    	this.quantitaMagazzino = quantitaMagazzino; 
-    	}
-    
-    public String getNomeCategoria() { 
-    	return nomeCategoria; 
-    	}
-    
-    public void setNomeCategoria(String nomeCategoria) { 
-    	this.nomeCategoria = nomeCategoria; 
-    	}
-    
-    
-    private String codiceProdotto;
+    private int codiceProdotto;
     private String nome;
     private String descrizione;
-    private double costo;
-    private String immagine;
+    private float costo;
+    private String immagine;      // path
     private int quantitaMagazzino;
-    private String nomeCategoria;
 }

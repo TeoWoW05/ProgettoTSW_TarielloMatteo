@@ -30,6 +30,7 @@ if (errore != null) {
 }
 %>
 
+
 <form action="${pageContext.request.contextPath}/LogServlet" method="post" class="reglog">
 
 <div class="label">

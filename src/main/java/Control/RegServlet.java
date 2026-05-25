@@ -109,7 +109,9 @@ public class RegServlet extends HttpServlet {
             
             utenteDao.doSave(utente);
             
-            response.sendRedirect(request.getContextPath() + "/LogServlet?registrato=true");
+            request.getSession().setAttribute("registrazioneCompletata",true);
+            
+            response.sendRedirect(request.getContextPath() + "/LogServlet");
             return;
             
         } catch (SQLException e) {

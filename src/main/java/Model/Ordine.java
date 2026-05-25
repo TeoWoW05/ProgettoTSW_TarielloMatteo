@@ -1,10 +1,13 @@
 package Model;
 
-public class Ordine {
+import java.io.Serializable;
 
+public class Ordine implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 public Ordine() {}	
 	
-public Ordine(String id, String email_utente, String totale_ordine, int pan, int CVV, int scadenza, String via,
+public Ordine(int id, String email_utente, float totale_ordine, int pan, int CVV, int scadenza, String via,
 			String città, int cap, int civico) {
 		this.id = id;
 		this.email_utente = email_utente;
@@ -18,11 +21,11 @@ public Ordine(String id, String email_utente, String totale_ordine, int pan, int
 		this.civico = civico;
 	}
 
-public String getId() {
+public int getId() {
 	return id;
 }
 
-public void setId(String id) {
+public void setId(int id) {
 	this.id = id;
 }
 
@@ -34,11 +37,11 @@ public void setEmail_utente(String email_utente) {
 	this.email_utente = email_utente;
 }
 
-public String getTotale_ordine() {
+public float getTotale_ordine() {
 	return totale_ordine;
 }
 
-public void setTotale_ordine(String totale_ordine) {
+public void setTotale_ordine(float totale_ordine) {
 	this.totale_ordine = totale_ordine;
 }
 
@@ -102,9 +105,9 @@ public void setCivico(int civico) {
 
 
 
-private String id;
+private int id;
 private String email_utente;
-private String totale_ordine;
+private float totale_ordine;
 private int pan;
 private int CVV;
 private int scadenza;
