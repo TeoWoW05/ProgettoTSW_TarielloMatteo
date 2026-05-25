@@ -33,6 +33,8 @@ public class Utente implements Serializable {
     public void setPass(String password) { this.password = password; }
     
     
+    
+    
     private String email;
     private String nome;
     private String cognome;

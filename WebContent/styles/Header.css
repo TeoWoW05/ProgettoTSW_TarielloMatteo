@@ -20,7 +20,6 @@
     flex-wrap: wrap;
 }
 
-
 .logo h1 {
     font-size: 1.8rem;
     font-weight: 700;
@@ -39,7 +38,6 @@
     text-decoration: none;
 }
 
-/* Barra di ricerca */
 .search-bar {
     flex: 1;
     max-width: 400px;
@@ -47,9 +45,9 @@
 }
 
 .search-bar form {
-	padding-top: 15px;
     display: flex;
     position: relative;
+    width: 100%;
 }
 
 .search-bar input {
@@ -76,7 +74,7 @@
 .search-bar button {
     position: absolute;
     right: 5px;
-    top: 64%;
+    top: 50%;
     transform: translateY(-50%);
     background: #ffffff;
     border: none;
@@ -96,7 +94,6 @@
     background: #dddddd;
 }
 
-/* Navigazione desktop */
 .main-nav ul {
     list-style: none;
     display: flex;
@@ -136,7 +133,6 @@
     width: 100%;
 }
 
-
 .mobile-toggle {
     display: none;
     flex-direction: column;
@@ -144,7 +140,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: 5px;
+    padding: 8px;
 }
 
 .mobile-toggle span {
@@ -155,45 +151,101 @@
     transition: 0.3s;
 }
 
+/* Tablet */
+@media (max-width: 900px) {
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .main-nav ul {
+        gap: 15px;
+    }
+    
+    .main-nav ul li a {
+        font-size: 0.85rem;
+    }
+}
 
 @media (max-width: 768px) {
     .header-container {
-        flex-wrap: wrap;
-        position: relative;
+        padding: 12px 15px;
     }
-
+    
+    .logo h1 {
+        font-size: 1.4rem;
+    }
+    
     .search-bar {
         order: 3;
         width: 100%;
         max-width: 100%;
+        margin-top: 10px;
     }
-
+    
     .mobile-toggle {
         display: flex;
     }
-
+    
     .main-nav {
         display: none;
         width: 100%;
         order: 4;
     }
-
+    
     .main-nav.active {
         display: block;
     }
-
+    
     .main-nav ul {
         flex-direction: column;
         gap: 0;
+        padding: 10px 0 0;
     }
-
+    
     .main-nav ul li {
         border-top: 1px solid rgba(255,255,255,0.1);
         text-align: center;
     }
-
+    
     .main-nav ul li a {
         display: block;
         padding: 12px 0;
+        font-size: 1rem;
+    }
+    
+    .main-nav ul li a::after {
+        display: none;
+    }
+}
+
+/* Mobile piccolo */
+@media (max-width: 480px) {
+    .header-container {
+        padding: 10px 12px;
+    }
+    
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+    
+    .search-bar input {
+        padding: 8px 40px 8px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .search-bar button {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+    
+    .mobile-toggle span {
+        width: 22px;
+        height: 2px;
+    }
+    
+    .main-nav ul li a {
+        padding: 10px 0;
+        font-size: 0.9rem;
     }
 }

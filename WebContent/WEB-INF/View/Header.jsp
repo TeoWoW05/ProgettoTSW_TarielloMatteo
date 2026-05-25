@@ -1,5 +1,7 @@
+<%@page import="Model.Utente"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +31,19 @@
                 <li><a href="${pageContext.request.contextPath}/prodotti">Prodotti</a></li>
                 <li><a href="${pageContext.request.contextPath}/offerte">Offerte</a></li>
                 <li><a href="${pageContext.request.contextPath}/carrello">Carrello</a></li>
-                <li><a href="${pageContext.request.contextPath}/contatti">Contatti</a></li>
+                <%
+                  Object utenteObj = session.getAttribute("utente");
+                  if(utenteObj == null){		
+                %>
+                <li><a href="${pageContext.request.contextPath}/Registrazione.jsp">Registrati</a></li>
+                <li><a href="${pageContext.request.contextPath}/Login.jsp">Login</a></li>
+                <%
+                  } else{
+                	  Model.Utente utente = (Model.Utente) utenteObj;
+                %>
+                <li><span>Benvenuto, <%= utente.getNickname() %></span></li>
+            <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+            <% } %>
             </ul>
         </nav>
 

@@ -26,12 +26,11 @@ body {
     background-blend-mode: overlay;
 }
 
-
 .reglog {
     backdrop-filter: blur(10px);
     padding: 40px;
     border-radius: 15px;
-    box-shadow: var(--box-shadow);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     width: 90%;                
     max-width: 500px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -42,8 +41,8 @@ body {
 }
 
 .reglog:hover {
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-    background: rgba(0.5, 0.5, 0.5, 0.98);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    background: rgba(30, 30, 30, 0.98);
 }
 
 h1 {
@@ -70,7 +69,6 @@ h1::after {
     height: 2px;
     background: #ffffff;
 }
-
 
 .reglog .label {
     color: white;
@@ -105,7 +103,6 @@ h1::after {
     font-family: inherit;
 }
 
-
 .reglog input:focus {
     outline: none;
     border-color: #ffffff;
@@ -115,7 +112,6 @@ h1::after {
 .reglog input:hover:not(:focus) {
     border-color: #aaa;
 }
-
 
 .reglog #mostraPass {
     color: white;
@@ -156,9 +152,9 @@ h1::after {
 .reglog input[type="submit"]:hover {
     transform: translateY(-2px);
     color: white;
-    background: lightgrey;
+    background: #555;
+    border-color: white;
 }
-
 
 .page-wrapper {
     display: flex;
@@ -178,7 +174,6 @@ h1::after {
     box-sizing: border-box;
 }
 
-
 .site-footer-minimal {
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
@@ -190,6 +185,19 @@ h1::after {
     box-sizing: border-box;
 }
 
+/* Tablet */
+@media (max-width: 768px) {
+    .reglog {
+        padding: 30px 25px;
+        max-width: 450px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+}
+
+/* Mobile landscape e medio */
 @media (max-width: 600px) {
     .reglog {
         padding: 25px 20px;
@@ -200,7 +208,6 @@ h1::after {
         font-size: 2rem;
         margin-bottom: 25px;
     }
-
    
     .reglog .label {
         flex-direction: column;
@@ -212,7 +219,7 @@ h1::after {
         width: 100%;
         text-align: left;
         padding-right: 0;
-        margin-bottom: 5px;
+        margin-bottom: 6px;
     }
 
     .reglog .label input {
@@ -222,20 +229,63 @@ h1::after {
     .reglog #mostraPass {
         flex-direction: row;
         justify-content: flex-start;
+        gap: 10px;
     }
-
+    
     .reglog input[type=submit] {
         font-size: 1rem;
         padding: 12px;
     }
 }
 
-@media (max-width: 400px) {
+/* Mobile piccolo */
+@media (max-width: 480px) {
     .reglog {
         padding: 20px 15px;
+        width: 95%;
     }
 
     h1 {
         font-size: 1.7rem;
+    }
+    
+    .reglog .label label {
+        font-size: 0.8rem;
+    }
+    
+    .reglog .label input {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .reglog input[type=submit] {
+        font-size: 0.9rem;
+        padding: 10px;
+        letter-spacing: 1px;
+    }
+}
+
+/* Landscape orientation fix */
+@media (max-height: 500px) and (orientation: landscape) {
+    .reglog {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .reglog .label {
+        margin-bottom: 12px;
+    }
+    
+    .reglog input[type=submit] {
+        margin-top: 15px;
+        padding: 8px;
+    }
+    
+    .main-content {
+        padding: 20px;
     }
 }
