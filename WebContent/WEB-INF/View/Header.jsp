@@ -35,8 +35,8 @@
                   Object utenteObj = session.getAttribute("utente");
                   if(utenteObj == null){		
                 %>
-                <li><a href="${pageContext.request.contextPath}/Registrazione.jsp">Registrati</a></li>
-                <li><a href="${pageContext.request.contextPath}/Login.jsp">Login</a></li>
+                <li><a href="${pageContext.request.contextPath}/RegServlet">Registrati</a></li>
+                <li><a href="${pageContext.request.contextPath}/LogServlet">Login</a></li>
                 <%
                   } else{
                 	  Model.Utente utente = (Model.Utente) utenteObj;

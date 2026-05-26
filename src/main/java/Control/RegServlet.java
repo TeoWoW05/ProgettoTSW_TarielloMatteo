@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import DatabaseConnection.DatabaseManager;
-
+import MetodoDiHashing.PasswordHashing;
 import Dao.DaoUtente;
 import Dao.DaoUtenteInterface;
 import Model.Utente;
@@ -106,6 +106,9 @@ public class RegServlet extends HttpServlet {
             utente.setCognome(cognome);
             utente.setNickname(nickname);
             utente.setPass(password);
+            
+            String passwordHash = PasswordHashing.hashPassword(password);
+            utente.setPass(passwordHash);
             
             utenteDao.doSave(utente);
             

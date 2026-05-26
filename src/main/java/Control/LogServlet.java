@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 
 import DatabaseConnection.DatabaseManager;
+import MetodoDiHashing.PasswordHashing;
 import Model.Utente;
 import Dao.DaoUtenteInterface;
 import Dao.DaoUtente;
@@ -54,11 +55,11 @@ public class LogServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String password = request.getParameter("pass");
         
         // Validazione
-        if (email == null || email.trim().isEmpty() ||
-            password == null || password.trim().isEmpty()) {
+        if ((email == null || email.trim().isEmpty()) ||
+            (password == null || password.trim().isEmpty())) {
             
             request.setAttribute("errore", "Inserisci email e password!");
             request.getRequestDispatcher("/WEB-INF/View/Login.jsp").forward(request, response);
@@ -68,14 +69,15 @@ public class LogServlet extends HttpServlet {
         try {
             Utente utente = utenteDao.doRetrieveByKey(email);
             
-            if (utente != null && utente.getPass().equals(password)) {
+            if (utente != null && PasswordHashing.checkPassword(password, utente.getPass())) {
                 HttpSession session = request.getSession();
                 session.setAttribute("utente", utente);
                 session.setAttribute("loggedIn", true);
                 session.setAttribute("email", utente.getEmail());
                 session.setAttribute("nickname", utente.getNickname());
                 
-                request.getRequestDispatcher("/WEB-INF/View/HomePage.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/HPServlet");
+                return;
             } else {
                 request.setAttribute("errore", "Username/email o password errati");
                 request.getRequestDispatcher("/WEB-INF/View/Login.jsp").forward(request, response);

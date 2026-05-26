@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Piece-B-Piece - HomePage</title>
+<script src="${pageContext.request.contextPath}/javascript/Navbar.js"></script>
 </head>
 <body>
 <%@ include file ="Header.jsp" %>

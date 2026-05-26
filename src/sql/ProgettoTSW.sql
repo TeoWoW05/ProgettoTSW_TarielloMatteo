@@ -10,7 +10,7 @@ CREATE TABLE Utente (
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
     nickname VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL  -- In produzione: salvare hash, non password in chiaro
+    password VARCHAR(256) NOT NULL
 );
 
 -- =============================================
