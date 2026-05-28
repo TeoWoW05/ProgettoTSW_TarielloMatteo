@@ -1,6 +1,6 @@
 package Dao;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +21,7 @@ public class DaoUtente implements DaoUtenteInterface {
 	
 	@Override
 	public synchronized void doSave(Utente utente) throws SQLException{
-		String insertSQL = "INSERT INTO "+ TABLE_NAME + "(email, nome, cognome, nickname, password) VALUES(?, ?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO "+ TABLE_NAME + "(email, nome, cognome, nickname, password, ruolo) VALUES(?, ?, ?, ?, ?, ?)";
 		
 		try(Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(insertSQL,Statement.RETURN_GENERATED_KEYS)){
@@ -31,6 +31,7 @@ public class DaoUtente implements DaoUtenteInterface {
 				preparedStatement.setString(3, utente.getCognome());
 				preparedStatement.setString(4, utente.getNickname());
 				preparedStatement.setString(5, utente.getPass());
+				preparedStatement.setString(6, utente.getRuolo());
 				
 				preparedStatement.executeUpdate();
 				
@@ -45,7 +46,7 @@ public class DaoUtente implements DaoUtenteInterface {
 	@Override
     public synchronized void doUpdate(Utente utente) throws SQLException {
         String updateSQL = "UPDATE " + TABLE_NAME 
-                + " SET nome = ?, cognome = ?, nickname = ?, password = ? WHERE email = ?";
+                + " SET nome = ?, cognome = ?, nickname = ?, password = ?, ruolo = ? WHERE email = ?";
         
         try (Connection connection = ds.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(updateSQL)) {
@@ -54,7 +55,8 @@ public class DaoUtente implements DaoUtenteInterface {
             preparedStatement.setString(2, utente.getCognome());
             preparedStatement.setString(3, utente.getNickname());
             preparedStatement.setString(4, utente.getPass());
-            preparedStatement.setString(5, utente.getEmail());
+            preparedStatement.setString(5, utente.getRuolo());
+            preparedStatement.setString(6, utente.getEmail());
             
             preparedStatement.executeUpdate();
         }
@@ -95,6 +97,7 @@ public class DaoUtente implements DaoUtenteInterface {
 	                    bean.setCognome(rs.getString("cognome"));
 	                    bean.setNickname(rs.getString("nickname"));
 	                    bean.setPass(rs.getString("password"));
+	                    bean.setRuolo(rs.getString("ruolo"));
 	                }
 	            }
 	        }
@@ -110,7 +113,7 @@ public class DaoUtente implements DaoUtenteInterface {
 	        // Whitelist per prevenire SQL injection
 	        if (order != null && !order.isEmpty()) {
 	            if (order.equals("email") || order.equals("nome") || order.equals("cognome") || 
-	                order.equals("nickname") || order.equals("data_registrazione")) {
+	                order.equals("nickname") || order.equals("data_registrazione") || order.equals("ruolo")) {
 	                selectSQL += " ORDER BY " + order;
 	            } else {
 	                selectSQL += " ORDER BY email";
@@ -130,6 +133,7 @@ public class DaoUtente implements DaoUtenteInterface {
 	                bean.setCognome(rs.getString("cognome"));
 	                bean.setNickname(rs.getString("nickname"));
 	                bean.setPass(rs.getString("password"));
+	                bean.setRuolo(rs.getString("ruolo"));
 	                utenti.add(bean);
 	            }
 	        }

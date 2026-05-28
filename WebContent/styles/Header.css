@@ -102,7 +102,7 @@
     padding: 0;
 }
 
-.main-nav ul li a {
+.main-nav ul li a{
     color: #cccccc;
     text-decoration: none;
     font-size: 0.95rem;
@@ -149,6 +149,18 @@
     height: 2px;
     background: #ffffff;
     transition: 0.3s;
+}
+
+#utente{
+	color: #cccccc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+    position: relative;
 }
 
 /* Tablet */

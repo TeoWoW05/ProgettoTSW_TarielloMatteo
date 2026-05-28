@@ -37,6 +37,10 @@ public class Prodotto implements Serializable {
     public int getQuantitaMagazzino() { return quantitaMagazzino; }
     public void setQuantitaMagazzino(int quantitaMagazzino) { this.quantitaMagazzino = quantitaMagazzino; }
     
+    public String getPrezzoFormattato() {
+        return String.format("€ %.2f", costo);
+    }
+    
     private int codiceProdotto;
     private String nome;
     private String descrizione;

@@ -237,6 +237,8 @@ h1::after {
     }
 }
 
+
+
 /* Mobile piccolo */
 @media (max-width: 480px) {
     .reglog {

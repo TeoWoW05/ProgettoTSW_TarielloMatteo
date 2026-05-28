@@ -10,7 +10,8 @@ CREATE TABLE Utente (
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
     nickname VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(256) NOT NULL
+    password VARCHAR(256) NOT NULL,
+    ruolo VARCHAR(20) DEFAULT 'user' NOT NULL
 );
 
 -- =============================================

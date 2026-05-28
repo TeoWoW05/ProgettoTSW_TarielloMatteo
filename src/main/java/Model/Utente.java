@@ -6,15 +6,10 @@ public class Utente implements Serializable {
     private static final long serialVersionUID = 1L;
     
 
-    public Utente() {}
-
-    public Utente(String email, String nome, String cognome, String nickname, String password) {
-        this.email = email;
-        this.nome = nome;
-        this.cognome = cognome;
-        this.nickname = nickname;
-        this.password = password;       
+    public Utente() {
+    	this.ruolo = "user";
     }
+
 
     
     public String getEmail() { return email; }
@@ -37,7 +32,17 @@ public class Utente implements Serializable {
     
     public void setPass(String password) { this.password = password; }
     
+    public String getRuolo() { return ruolo; }
     
+    public void setRuolo(String ruolo) { this.ruolo = ruolo; }
+    
+    public boolean isAdmin() {
+        return "admin".equals(this.ruolo);
+    }
+    
+    public boolean isUser() {
+        return "user".equals(this.ruolo);
+    }
     
     
     private String email;
@@ -45,6 +50,7 @@ public class Utente implements Serializable {
     private String cognome;
     private String nickname;
     private String password;
+    private String ruolo;
 }
 
 

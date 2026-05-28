@@ -75,11 +75,15 @@ public class LogServlet extends HttpServlet {
                 session.setAttribute("loggedIn", true);
                 session.setAttribute("email", utente.getEmail());
                 session.setAttribute("nickname", utente.getNickname());
+                session.setAttribute("ruolo",utente.getRuolo());
                 
+                if(utente.isAdmin()) {
+                	 response.sendRedirect(request.getContextPath() + "/AdminServlet");
+                }
                 response.sendRedirect(request.getContextPath() + "/HPServlet");
                 return;
             } else {
-                request.setAttribute("errore", "Username/email o password errati");
+                request.setAttribute("errore", "Email o password errati");
                 request.getRequestDispatcher("/WEB-INF/View/Login.jsp").forward(request, response);
             }
             

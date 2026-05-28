@@ -27,7 +27,7 @@
 
         <nav class="main-nav">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/HPServlet">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/prodotti">Prodotti</a></li>
                 <li><a href="${pageContext.request.contextPath}/offerte">Offerte</a></li>
                 <li><a href="${pageContext.request.contextPath}/carrello">Carrello</a></li>
@@ -41,8 +41,11 @@
                   } else{
                 	  Model.Utente utente = (Model.Utente) utenteObj;
                 %>
-                <li><span>Benvenuto, <%= utente.getNickname() %></span></li>
-            <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                <li><span id="utente"><%= utente.getNickname() %></span></li>
+                <% if (utente.isAdmin()) { %>
+        <li><a href="${pageContext.request.contextPath}/admin/dashboard">Pannello Admin</a></li>
+        	 <% } %>
+            <li><a href="${pageContext.request.contextPath}/LogoutServ">Logout</a></li>
             <% } %>
             </ul>
         </nav>

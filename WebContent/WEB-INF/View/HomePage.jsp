@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Piece-B-Piece - HomePage</title>
+<link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/LoginReg.css">
 <script src="${pageContext.request.contextPath}/javascript/Navbar.js"></script>
 </head>
 <body>
