@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Login - Piece B Piece</title>
-<link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/LoginReg.css">
+<link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/General.css">
 <script src="${pageContext.request.contextPath}/javascript/RegLog.js"></script>
 <script src="${pageContext.request.contextPath}/javascript/Navbar.js"></script>
 </head>

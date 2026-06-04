@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Piece-B-Piece - Prodotti</title>
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/Prodotti.css">
+ <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/General.css">
 </head>
 <body>
 <%@ include file ="Header.jsp" %>
