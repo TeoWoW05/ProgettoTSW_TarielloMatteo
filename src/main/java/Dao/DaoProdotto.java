@@ -179,6 +179,63 @@ public class DaoProdotto implements DaoProdottoInterface {
 	            ps.executeUpdate();
 	        }
 	    }
+	    
+	   @Override
+	    public synchronized void saveCategoriaProdotto(int prodottoId, String categoriaNome) throws SQLException {
+	        String sql = "INSERT INTO Possiede (prodotto_id, categoria_nome) VALUES (?, ?)";
+	        
+	        try (Connection conn = dataSource.getConnection();
+	             PreparedStatement ps = conn.prepareStatement(sql)) {
+	            
+	            ps.setInt(1, prodottoId);
+	            ps.setString(2, categoriaNome);
+	            ps.executeUpdate();
+	        }
+	    }
+
+	   @Override
+	    public synchronized List<String> getCategorieProdotto(int prodottoId) throws SQLException {
+	        List<String> categorie = new ArrayList<>();
+	        String sql = "SELECT categoria_nome FROM Possiede WHERE prodotto_id = ?";
+	        
+	        try (Connection conn = dataSource.getConnection();
+	             PreparedStatement ps = conn.prepareStatement(sql)) {
+	            
+	            ps.setInt(1, prodottoId);
+	            
+	            try (ResultSet rs = ps.executeQuery()) {
+	                while (rs.next()) {
+	                    categorie.add(rs.getString("categoria_nome"));
+	                }
+	            }
+	        }
+	        return categorie;
+	    }
+	   
+	   @Override
+	    public synchronized void removeAllCategorie(int prodottoId) throws SQLException {
+	        String sql = "DELETE FROM Possiede WHERE prodotto_id = ?";
+	        
+	        try (Connection conn = dataSource.getConnection();
+	             PreparedStatement ps = conn.prepareStatement(sql)) {
+	            
+	            ps.setInt(1, prodottoId);
+	            ps.executeUpdate();
+	        }
+	    }
+
+	   
+	    
+	     @Override
+	    public synchronized void updateCategorieProdotto(int prodottoId, String[] categorieNomi) throws SQLException {
+	        removeAllCategorie(prodottoId);
+	        
+	        if (categorieNomi != null) {
+	            for (String categoriaNome : categorieNomi) {
+	                saveCategoriaProdotto(prodottoId, categoriaNome);
+	            }
+	        }
+	    }
 	
 	private Prodotto creaProdotto(ResultSet rs) throws SQLException {
         Prodotto prodotto = new Prodotto();

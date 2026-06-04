@@ -24,4 +24,12 @@ public interface DaoProdottoInterface {
 	
 	void updateQuantita(int codiceProdotto,int quantita) throws SQLException;
 	
+	void saveCategoriaProdotto(int prodottoId, String categoriaNome) throws SQLException;
+	
+    List<String> getCategorieProdotto(int prodottoId) throws SQLException;
+    
+    void removeAllCategorie(int prodottoId) throws SQLException;
+    
+    void updateCategorieProdotto(int prodottoId, String[] categorieNomi) throws SQLException;
+	
 }
