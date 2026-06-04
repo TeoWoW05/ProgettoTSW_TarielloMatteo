@@ -18,7 +18,7 @@ import Dao.DaoProdotto;
 import Model.Categoria;
 import Model.Prodotto;
 
-@WebServlet("/prodotti")
+@WebServlet("/ProdottiServlet")
 public class ProdottiServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     

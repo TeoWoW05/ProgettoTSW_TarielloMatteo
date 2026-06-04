@@ -19,8 +19,8 @@
         <div class="footer-section">
             <h4>Link Utili</h4>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/prodotti">Prodotti</a></li>
+                <li><a href="${pageContext.request.contextPath}/HPServlet">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/ProdottiServlet">Prodotti</a></li>
                 <li><a href="${pageContext.request.contextPath}/carrello">Carrello</a></li>
                 <li><a href="${pageContext.request.contextPath}/contatti">Contatti</a></li>
             </ul>

@@ -16,7 +16,7 @@ public class DaoProdotto implements DaoProdottoInterface {
 	private DataSource dataSource;
 	
 	public DaoProdotto(DataSource datasource) {
-		this.dataSource = dataSource;
+		this.dataSource = datasource;
 	}
 	
 	@Override

@@ -1,0 +1,370 @@
+@charset "UTF-8";
+
+/* Container principale */
+.prodotti-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header della pagina */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.page-header h1 {
+    color: #ffffff;
+    font-size: 2rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Pulsante Aggiungi (solo Admin) */
+.btn-aggiungi {
+    background: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background 0.3s ease;
+    display: inline-block;
+}
+
+.btn-aggiungi:hover {
+    background: #388E3C;
+    color: white;
+    text-decoration: none;
+}
+
+/* Filtri e ricerca */
+.filtri {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filtri select,
+.filtri input {
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.filtri select option {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+.filtri input::placeholder {
+    color: #aaaaaa;
+}
+
+.filtri button {
+    padding: 10px 20px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.filtri button:hover {
+    background: #1e40af;
+}
+
+/* Griglia prodotti */
+.prodotti-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Card prodotto */
+.prodotto-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.prodotto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Immagine prodotto */
+.prodotto-immagine {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.prodotto-no-img {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Nome prodotto */
+.prodotto-nome {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Descrizione */
+.prodotto-descrizione {
+    color: #cccccc;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 15px 0;
+    flex-grow: 1;
+}
+
+/* Prezzo */
+.prodotto-prezzo {
+    color: #4CAF50;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+/* Disponibilità */
+.prodotto-disponibilita {
+    color: #aaa;
+    font-size: 0.85rem;
+    margin: 0 0 15px 0;
+}
+
+.prodotto-disponibilita .esaurito {
+    color: #f44336;
+    font-weight: bold;
+}
+
+.prodotto-disponibilita .disponibile {
+    color: #4CAF50;
+}
+
+/* Pulsanti azione */
+.prodotto-azioni {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
+
+.btn-dettaglio {
+    background: #2563eb;
+    color: white;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.3s;
+    text-align: center;
+    flex: 1;
+    min-width: 100px;
+}
+
+.btn-dettaglio:hover {
+    background: #1e40af;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-carrello {
+    background: #f59e0b;
+    color: #000;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.3s;
+    text-align: center;
+    flex: 1;
+    min-width: 100px;
+}
+
+.btn-carrello:hover {
+    background: #d97706;
+    color: #000;
+    text-decoration: none;
+}
+
+.btn-carrello.disabled {
+    background: #555;
+    color: #999;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Pulsanti Admin */
+.admin-azioni {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-modifica {
+    background: #2196F3;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.3s;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-modifica:hover {
+    background: #1976D2;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-aggiungi-quantita {
+    background: #4CAF50;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.3s;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-aggiungi-quantita:hover {
+    background: #388E3C;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-elimina {
+    background: #f44336;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.3s;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-elimina:hover {
+    background: #d32f2f;
+    color: white;
+    text-decoration: none;
+}
+
+/* Categorie */
+.prodotto-categorie {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.categoria-tag {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ccc;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+/* Messaggi */
+.messaggio-vuoto {
+    text-align: center;
+    color: #aaa;
+    font-size: 1.1rem;
+    padding: 50px 20px;
+    grid-column: 1 / -1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .prodotti-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+    }
+    
+    .prodotto-card {
+        padding: 15px;
+    }
+    
+    .prodotto-azioni {
+        flex-direction: column;
+    }
+    
+    .admin-azioni {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .prodotti-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filtri {
+        flex-direction: column;
+    }
+    
+    .filtri select,
+    .filtri input,
+    .filtri button {
+        width: 100%;
+    }
+}
