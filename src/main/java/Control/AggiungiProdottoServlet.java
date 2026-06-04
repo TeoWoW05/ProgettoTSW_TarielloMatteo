@@ -20,7 +20,7 @@ import Dao.DaoProdotto;
 import Model.Categoria;
 import Model.Prodotto;
 
-@WebServlet("/admin/aggiungiProdotto")
+@WebServlet("/AggiungiProdottoServlet")
 @MultipartConfig(
     fileSizeThreshold = 1024 * 1024,      // 1 MB
     maxFileSize = 1024 * 1024 * 10,       // 10 MB
@@ -56,10 +56,10 @@ public class AggiungiProdottoServlet extends HttpServlet {
         try {
             ArrayList<Categoria> categorie = categoriaDao.doRetrieveAll();
             request.setAttribute("categorie", categorie);
-            request.getRequestDispatcher("/WEB-INF/View/Admin/AggiungiProdotto.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/View/AggiungiProdotto.jsp").forward(request, response);
         } catch (SQLException e) {
             request.setAttribute("errore", "Errore nel caricamento delle categorie");
-            request.getRequestDispatcher("/WEB-INF/View/Admin/AggiungiProdotto.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/View/AggiungiProdotto.jsp").forward(request, response);
         }
     }
     

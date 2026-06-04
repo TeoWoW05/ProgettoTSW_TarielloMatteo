@@ -34,7 +34,7 @@
 	if(isAdmin){
 %>
 
-	<a href="${pageContext.request.contextPath}/admin/aggiungiProdotto" class="btn-aggiungi">
+	<a href="${pageContext.request.contextPath}/AggiungiProdottoServlet" class="btn-aggiungi">
 	+ Aggiungi Prodotto
 	</a>
 	<% } %>
@@ -175,13 +175,13 @@
                     if (isAdmin) {
                     %>
                         <div class="admin-azioni">
-                            <a href="${pageContext.request.contextPath}/admin/modificaProdotto?id=<%= p.getCodiceProdotto() %>" 
+                            <a href="${pageContext.request.contextPath}/modificaProdotto?id=<%= p.getCodiceProdotto() %>" 
                                class="btn-modifica">Modifica</a>
                             
-                            <a href="${pageContext.request.contextPath}/admin/aggiungiQuantita?id=<%= p.getCodiceProdotto() %>" 
+                            <a href="${pageContext.request.contextPath}/aggiungiQuantita?id=<%= p.getCodiceProdotto() %>" 
                                class="btn-aggiungi-quantita">+ Qtà</a>
                             
-                            <a href="${pageContext.request.contextPath}/admin/eliminaProdotto?id=<%= p.getCodiceProdotto() %>" 
+                            <a href="${pageContext.request.contextPath}/eliminaProdotto?id=<%= p.getCodiceProdotto() %>" 
                                class="btn-elimina" 
                                onclick="return confirm('Sei sicuro di voler eliminare questo prodotto?')">Elimina</a>
                         </div>
