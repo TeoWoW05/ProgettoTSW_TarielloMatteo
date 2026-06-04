@@ -196,13 +196,6 @@
             %>
                 <div class="messaggio-vuoto">
                     <p>Nessun prodotto trovato.</p>
-                    <%
-                    if (isAdmin) {
-                    %>
-                        <p><a href="${pageContext.request.contextPath}/admin/aggiungiProdotto">Aggiungi il primo prodotto</a></p>
-                    <%
-                    }
-                    %>
                 </div>
             <%
             }
