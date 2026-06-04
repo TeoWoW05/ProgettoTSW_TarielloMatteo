@@ -77,10 +77,7 @@ public class LogServlet extends HttpServlet {
                 session.setAttribute("nickname", utente.getNickname());
                 session.setAttribute("ruolo",utente.getRuolo());
                 
-                if(utente.isAdmin()) {
-                	 response.sendRedirect(request.getContextPath() + "/AdminServlet");
-                }
-                response.sendRedirect(request.getContextPath() + "/HPServlet");
+                response.sendRedirect(request.getContextPath()+ "/HPServlet");
                 return;
             } else {
                 request.setAttribute("errore", "Email o password errati");

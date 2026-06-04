@@ -35,7 +35,7 @@ public class AdminFilter implements Filter {
             chain.doFilter(request, response);
         } else {
             // Non è admin, reindirizza alla home
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/HomePage.jsp");
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/HPServlet");
         }
     }
 }
