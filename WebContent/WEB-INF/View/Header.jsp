@@ -29,7 +29,6 @@
             <ul>
                 <li><a href="${pageContext.request.contextPath}/HPServlet">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/ProdottiServlet">Prodotti</a></li>
-                <li><a href="${pageContext.request.contextPath}/offerte">Offerte</a></li>
                 <li><a href="${pageContext.request.contextPath}/carrello">Carrello</a></li>
                 <%
                   Object utenteObj = session.getAttribute("utente");
