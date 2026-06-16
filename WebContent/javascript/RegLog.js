@@ -20,3 +20,20 @@ function logPass() {
     x.type = "password";
    }
   }
+  
+  function changeQty(delta) {
+              let input = document.getElementById('qty');
+              let current = parseInt(input.value);
+              let newQty = current + delta;
+              
+              if (newQty >= 1 && newQty <= parseInt(input.max)) {
+                  input.value = newQty;
+                  
+                  // Aggiorna link carrello e acquista
+                  var id = '<%= prodotto.getCodiceProdotto() %>';
+                  document.getElementById('btn-carrello').href = 
+                      '${pageContext.request.contextPath}/carrello?action=add&id=' + id + '&qty=' + newQty;
+                  document.getElementById('btn-acquista').href = 
+                      '${pageContext.request.contextPath}/checkout?action=buynow&id=' + id + '&qty=' + newQty;
+              }
+          }

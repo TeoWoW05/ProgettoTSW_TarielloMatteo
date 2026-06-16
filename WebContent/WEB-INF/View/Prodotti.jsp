@@ -152,7 +152,7 @@
                     
                     <!-- Azioni: SEMPRE visibili per tutti -->
                     <div class="prodotto-azioni">
-                        <a href="${pageContext.request.contextPath}/prodotto?id=<%= p.getCodiceProdotto() %>" 
+                        <a href="${pageContext.request.contextPath}/DettagliServlet?id=<%= p.getCodiceProdotto() %>" 
                            class="btn-dettaglio">Dettagli</a>
                         
                         <%

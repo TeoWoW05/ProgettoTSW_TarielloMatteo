@@ -206,9 +206,9 @@
 }
 
 .btn-primary:hover {
-    background: #388E3C;
+    background: rgb(0, 128, 0);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    box-shadow: 0 4px 12px rgb(0, 128, 0);
 }
 
 .btn-secondary {

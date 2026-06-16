@@ -91,9 +91,9 @@ public class DaoProdotto implements DaoProdottoInterface {
 	}
 	
 	@Override
-    public List<Prodotto> doRetrieveAll() throws SQLException {
+    public ArrayList<Prodotto> doRetrieveAll() throws SQLException {
         String sql = "SELECT * FROM Prodotto ORDER BY nome";
-        List<Prodotto> prodotti = new ArrayList<>();
+        ArrayList<Prodotto> prodotti = new ArrayList<>();
         
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -107,12 +107,12 @@ public class DaoProdotto implements DaoProdottoInterface {
     }
 	
 	 @Override
-	    public List<Prodotto> doRetrieveByCategoria(String categoria) throws SQLException {
+	    public ArrayList<Prodotto> doRetrieveByCategoria(String categoria) throws SQLException {
 	        String sql = "SELECT p.* FROM Prodotto p " +
 	                     "JOIN Possiede pos ON p.codice_prodotto = pos.prodotto_id " +
 	                     "WHERE pos.categoria_nome = ? " +
 	                     "ORDER BY p.nome";
-	        List<Prodotto> prodotti = new ArrayList<>();
+	        ArrayList<Prodotto> prodotti = new ArrayList<>();
 	        
 	        try (Connection conn = dataSource.getConnection();
 	             PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -129,9 +129,9 @@ public class DaoProdotto implements DaoProdottoInterface {
 	    }
 	 
 	    @Override
-	    public List<Prodotto> doRetrieveByNome(String nome) throws SQLException {
+	    public ArrayList<Prodotto> doRetrieveByNome(String nome) throws SQLException {
 	        String sql = "SELECT * FROM Prodotto WHERE nome LIKE ? ORDER BY nome";
-	        List<Prodotto> prodotti = new ArrayList<>();
+	        ArrayList<Prodotto> prodotti = new ArrayList<>();
 	        
 	        try (Connection conn = dataSource.getConnection();
 	             PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -148,9 +148,9 @@ public class DaoProdotto implements DaoProdottoInterface {
 	    }
 	    
 	    @Override
-	    public List<Prodotto> doRetrieveByPrezzo(float min, float max) throws SQLException {
+	    public ArrayList<Prodotto> doRetrieveByPrezzo(float min, float max) throws SQLException {
 	        String sql = "SELECT * FROM Prodotto WHERE costo BETWEEN ? AND ? ORDER BY costo";
-	        List<Prodotto> prodotti = new ArrayList<>();
+	        ArrayList<Prodotto> prodotti = new ArrayList<>();
 	        
 	        try (Connection conn = dataSource.getConnection();
 	             PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -194,8 +194,8 @@ public class DaoProdotto implements DaoProdottoInterface {
 	    }
 
 	   @Override
-	    public synchronized List<String> getCategorieProdotto(int prodottoId) throws SQLException {
-	        List<String> categorie = new ArrayList<>();
+	    public synchronized ArrayList<String> getCategorieProdotto(int prodottoId) throws SQLException {
+		   ArrayList<String> categorie = new ArrayList<>();
 	        String sql = "SELECT categoria_nome FROM Possiede WHERE prodotto_id = ?";
 	        
 	        try (Connection conn = dataSource.getConnection();
