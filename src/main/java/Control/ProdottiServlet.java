@@ -42,7 +42,7 @@ public class ProdottiServlet extends HttpServlet {
             String categoria = request.getParameter("categoria");
             String cerca = request.getParameter("cerca");
             
-            List<Prodotto> prodotti;
+            ArrayList<Prodotto> prodotti;
             
             if (categoria != null && !categoria.isEmpty()) {
                 

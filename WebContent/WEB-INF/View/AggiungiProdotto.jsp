@@ -63,62 +63,62 @@
                 
                 <div class="categorie-container">
                     <label class="checkbox-card">
-                        <input type="checkbox" name="categorie" value="Abbigliamento">
+                        <input type="checkbox" name="categorie" value="Scheda Madre">
                         <span>Scheda Madre</span>
                     </label>
                     
                     <label class="checkbox-card">
-                        <input type="checkbox" name="categorie" value="Scarpe">
+                        <input type="checkbox" name="categorie" value="Archiviazione">
                         <span>Archiviazione</span>
                     </label>
                     
                     <label class="checkbox-card">
-                        <input type="checkbox" name="categorie" value="Accessori">
+                        <input type="checkbox" name="categorie" value="RAM">
                         <span>RAM</span>
                     </label>
                     
                     <label class="checkbox-card">
-                        <input type="checkbox" name="categorie" value="Sport">
+                        <input type="checkbox" name="categorie" value="Monitor">
                         <span>Monitor</span>
                     </label>
                     
                     <label class="checkbox-card">
-                        <input type="checkbox" name="categorie" value="Elettronica">
+                        <input type="checkbox" name="categorie" value="Scheda Video">
                         <span>Scheda Video</span>
                     </label>
                     
                      <label class="checkbox-card">
-                        <input type="checkbox" name="categorie" value="Elettronica">
+                        <input type="checkbox" name="categorie" value="Processore">
                         <span>Processore</span>
                     </label>
                     
                      <label class="checkbox-card">
-                        <input type="checkbox" name="categorie" value="Elettronica">
+                        <input type="checkbox" name="categorie" value="Dissipatore">
                         <span>Dissipatore</span>
                     </label>
                     
                      <label class="checkbox-card">
-                        <input type="checkbox" name="categorie" value="Elettronica">
+                        <input type="checkbox" name="categorie" value="Ventola">
                         <span>Ventola</span>  
                     </label>
                     
                      <label class="checkbox-card">
-                        <input type="checkbox" name="categorie" value="Elettronica">
+                        <input type="checkbox" name="categorie" value="Periferiche">
                         <span>Periferiche</span>
                     </label>
                     
                      <label class="checkbox-card">
-                        <input type="checkbox" name="categorie" value="Elettronica">
+                        <input type="checkbox" name="categorie" value="Soundbar">
                         <span>Soundbar</span>
                     </label>
                     
                      <label class="checkbox-card">
-                        <input type="checkbox" name="categorie" value="Elettronica">
+                        <input type="checkbox" name="categorie" value="Case">
                         <span>Case</span>
                     </label>
                     
                      <label class="checkbox-card">
-                        <input type="checkbox" name="categorie" value="Elettronica">
+                        <input type="checkbox" name="categorie" value="Accessori">
                         <span>Accessori</span>
                     </label>
                 </div>

@@ -47,7 +47,7 @@
                 <select name="categoria" onchange="this.form.submit()">
                     <option value="">Tutte le categorie</option>
                     <%
-                    List<Categoria> categorie = (List<Categoria>) request.getAttribute("categorie");
+                    ArrayList<Categoria> categorie = (ArrayList<Categoria>) request.getAttribute("categorie");
                     if (categorie != null) {
                         for (Categoria cat : categorie) {
                             String selected = (categoriaSelezionata != null && cat.getNome().equals(categoriaSelezionata)) ? "selected" : "";
