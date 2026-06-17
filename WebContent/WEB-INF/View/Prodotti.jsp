@@ -182,7 +182,7 @@
                             
                             <button type="button" class="btn-elimina" 
         					onclick="openDeleteModal('<%= p.getCodiceProdotto() %>', '<%= p.getNome().replace("'", "\\'") %>')">
-    						🗑️ Elimina
+    						 Elimina
 							</button>
                         </div>
                     <%
