@@ -8,6 +8,7 @@
 <title>Piece-B-Piece - Prodotti</title>
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/Prodotti.css">
  <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/General.css">
+     <script src="${pageContext.request.contextPath}/javascript/RegLog.js"></script>
 </head>
 <body>
 <%@ include file ="Header.jsp" %>
@@ -179,9 +180,10 @@
                                class="btn-modifica">Modifica</a>
                             
                             
-                            <a href="${pageContext.request.contextPath}/eliminaProdotto?id=<%= p.getCodiceProdotto() %>" 
-                               class="btn-elimina" 
-                               onclick="return confirm('Sei sicuro di voler eliminare questo prodotto?')">Elimina</a>
+                            <button type="button" class="btn-elimina" 
+        					onclick="openDeleteModal('<%= p.getCodiceProdotto() %>', '<%= p.getNome().replace("'", "\\'") %>')">
+    						🗑️ Elimina
+							</button>
                         </div>
                     <%
                     }
@@ -200,7 +202,22 @@
             %>
         </div>
         
+   <div id="deleteModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>⚠️ Conferma Eliminazione</h3>
+        </div>
+        <div class="modal-body">
+            <p>Sei sicuro di voler eliminare questo prodotto?</p>
+            <p class="modal-product-name" id="modalProductName"></p>
+            <p style="color: #f44336; font-size: 0.9rem;">Questa azione è irreversibile!</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-cancel" onclick="closeDeleteModal()">❌ Annulla</button>
+            <a id="confirmDeleteBtn" href="#" class="btn-elimina"> Elimina</a>
+        </div>
     </div>
+</div>
 
 
 
