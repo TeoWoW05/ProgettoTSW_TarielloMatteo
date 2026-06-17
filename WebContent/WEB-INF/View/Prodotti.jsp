@@ -81,7 +81,7 @@
             
             if (prodotti != null && !prodotti.isEmpty()) {
                 // Recupera la mappa delle categorie
-                Map<Integer, List<String>> mappaCategorie = (Map<Integer, List<String>>) request.getAttribute("mappaCategorie");
+                Map<Integer, ArrayList<String>> mappaCategorie = (Map<Integer, ArrayList<String>>) request.getAttribute("mappaCategorie");
                 
                 for (Prodotto p : prodotti) {
             %>
@@ -108,7 +108,7 @@
                     <!-- Categorie -->
                     <%
                     if (mappaCategorie != null) {
-                        List<String> cats = mappaCategorie.get(p.getCodiceProdotto());
+                        ArrayList<String> cats = mappaCategorie.get(p.getCodiceProdotto());
                         if (cats != null && !cats.isEmpty()) {
                     %>
                         <div class="prodotto-categorie">
@@ -175,11 +175,9 @@
                     if (isAdmin) {
                     %>
                         <div class="admin-azioni">
-                            <a href="${pageContext.request.contextPath}/modificaProdotto?id=<%= p.getCodiceProdotto() %>" 
+                            <a href="${pageContext.request.contextPath}/AggiungiModificaProdottoServlet?id=<%= p.getCodiceProdotto() %>" 
                                class="btn-modifica">Modifica</a>
                             
-                            <a href="${pageContext.request.contextPath}/aggiungiQuantita?id=<%= p.getCodiceProdotto() %>" 
-                               class="btn-aggiungi-quantita">+ Qtà</a>
                             
                             <a href="${pageContext.request.contextPath}/eliminaProdotto?id=<%= p.getCodiceProdotto() %>" 
                                class="btn-elimina" 

@@ -263,26 +263,6 @@
     text-decoration: none;
 }
 
-.btn-aggiungi-quantita {
-    background: #4CAF50;
-    color: white;
-    padding: 8px 14px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: background 0.3s;
-    text-decoration: none;
-    text-align: center;
-}
-
-.btn-aggiungi-quantita:hover {
-    background: #388E3C;
-    color: white;
-    text-decoration: none;
-}
-
 .btn-elimina {
     background: #f44336;
     color: white;

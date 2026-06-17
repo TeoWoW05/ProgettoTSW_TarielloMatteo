@@ -39,7 +39,7 @@ private DaoProdotto prodottoDao;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-String idStr = request.getParameter("id");
+		String idStr = request.getParameter("id");
         
         if (idStr == null || idStr.trim().isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/ProdottiServlet");

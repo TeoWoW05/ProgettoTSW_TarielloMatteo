@@ -20,13 +20,13 @@ import Dao.DaoProdotto;
 import Model.Categoria;
 import Model.Prodotto;
 
-@WebServlet("/AggiungiProdottoServlet")
+@WebServlet("/AggiungiModificaProdottoServlet")
 @MultipartConfig(
     fileSizeThreshold = 1024 * 1024,      // 1 MB
     maxFileSize = 1024 * 1024 * 10,       // 10 MB
     maxRequestSize = 1024 * 1024 * 15     // 15 MB
 )
-public class AggiungiProdottoServlet extends HttpServlet {
+public class AggiungiModificaProdottoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
     private DaoProdotto prodottoDao;
@@ -46,7 +46,6 @@ public class AggiungiProdottoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
-        // Verifica che sia admin
         HttpSession session = request.getSession(false);
         if (session == null || !"admin".equals(session.getAttribute("ruolo"))) {
             response.sendRedirect(request.getContextPath() + "/LogServlet");
@@ -54,12 +53,38 @@ public class AggiungiProdottoServlet extends HttpServlet {
         }
         
         try {
-            ArrayList<Categoria> categorie = categoriaDao.doRetrieveAll();
-            request.setAttribute("categorie", categorie);
-            request.getRequestDispatcher("/WEB-INF/View/AggiungiProdotto.jsp").forward(request, response);
+            // Carica le categorie (servono sia per aggiunta che modifica)
+            ArrayList<Categoria> tutteCategorie = categoriaDao.doRetrieveAll();
+            request.setAttribute("categorie", tutteCategorie);
+            
+            String idStr = request.getParameter("id");
+            
+            if (idStr != null && !idStr.trim().isEmpty()) {
+                
+                int id = Integer.parseInt(idStr);
+                Prodotto prodotto = prodottoDao.doRetrieveByKey(id);
+                
+                if (prodotto == null) {
+                    response.sendRedirect(request.getContextPath() + "/ProdottiServlet");
+                    return;
+                }
+                
+                ArrayList<String> categorieProdotto = prodottoDao.getCategorieProdotto(id);
+                
+                request.setAttribute("prodotto", prodotto);
+                request.setAttribute("categorieProdotto", categorieProdotto);
+                request.setAttribute("modifica", true);  // Flag per la JSP
+                
+            } else {
+                // === AGGIUNTA ===
+                request.setAttribute("modifica", false);  // Flag per la JSP
+            }
+            
+            request.getRequestDispatcher("/WEB-INF/View/AggMod.jsp").forward(request, response);
+            
         } catch (SQLException e) {
-            request.setAttribute("errore", "Errore nel caricamento delle categorie");
-            request.getRequestDispatcher("/WEB-INF/View/AggiungiProdotto.jsp").forward(request, response);
+            request.setAttribute("errore", "Errore nel caricamento");
+            request.getRequestDispatcher("/WEB-INF/View/Error.jsp").forward(request, response);
         }
     }
     
@@ -73,8 +98,7 @@ public class AggiungiProdottoServlet extends HttpServlet {
             return;
         }
         
-        
-        String nome = request.getParameter("nome");
+        String idStr = request.getParameter("id");        String nome = request.getParameter("nome");
         String descrizione = request.getParameter("descrizione");
         String costoStr = request.getParameter("costo");
         String quantitaStr = request.getParameter("quantita");
@@ -113,6 +137,37 @@ public class AggiungiProdottoServlet extends HttpServlet {
                 imagePath = fileName;
             }
             
+            if (idStr != null && !idStr.trim().isEmpty()) {
+                // === MODIFICA PRODOTTO ESISTENTE ===
+                int id = Integer.parseInt(idStr);
+                Prodotto prodotto = prodottoDao.doRetrieveByKey(id);
+                
+                if (prodotto == null) {
+                    response.sendRedirect(request.getContextPath() + "/ProdottiServlet");
+                    return;
+                }
+                
+                prodotto.setNome(nome);
+                prodotto.setDescrizione(descrizione);
+                prodotto.setCosto(costo);
+                prodotto.setQuantitaMagazzino(quantita);
+                
+                // Aggiorna immagine solo se ne è stata caricata una nuova
+                if (imagePath != null) {
+                    prodotto.setImmagine(imagePath);
+                }
+                
+                prodottoDao.doUpdate(prodotto);
+                
+                // Aggiorna categorie
+                if (categorieSelezionate != null) {
+                    prodottoDao.updateCategorieProdotto(id, categorieSelezionate);
+                }
+                
+                session.setAttribute("messaggioSuccesso", "Prodotto modificato con successo!");
+                
+            } else {
+            
             // Crea e salva il prodotto
             Prodotto prodotto = new Prodotto();
             prodotto.setNome(nome);
@@ -127,6 +182,7 @@ public class AggiungiProdottoServlet extends HttpServlet {
             for (String cat : categorieSelezionate) {
                 prodottoDao.saveCategoriaProdotto(prodotto.getCodiceProdotto(), cat);
             }
+           }
             
             session.setAttribute("messaggioSuccesso", "Prodotto aggiunto con successo!");
             response.sendRedirect(request.getContextPath() + "/ProdottiServlet");
