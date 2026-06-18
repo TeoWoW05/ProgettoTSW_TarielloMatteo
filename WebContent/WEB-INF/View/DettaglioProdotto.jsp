@@ -106,7 +106,7 @@
                         </div>
                         
                         <!-- Pulsante carrello -->
-                        <a href="${pageContext.request.contextPath}/carrello?action=add&id=<%= prodotto.getCodiceProdotto() %>&qty=1" 
+                        <a href="${pageContext.request.contextPath}/CarrelloServlet?action=add&id=<%= prodotto.getCodiceProdotto() %>&qty=1" 
                            class="btn-carrello" 
                            id="btn-carrello">
                             🛒 Aggiungi al carrello

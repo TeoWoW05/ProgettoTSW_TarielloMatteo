@@ -1,0 +1,251 @@
+@charset "UTF-8";
+
+.carrello-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.carrello-container h1 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+/* Messaggi */
+.message {
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.message-success {
+    background: rgba(76, 175, 80, 0.2);
+    border: 1px solid #4CAF50;
+    color: #69f0ae;
+}
+
+.message-error {
+    background: rgba(244, 67, 54, 0.2);
+    border: 1px solid #f44336;
+    color: #ff7961;
+}
+
+/* Carrello vuoto */
+.carrello-vuoto {
+    text-align: center;
+    padding: 80px 20px;
+    color: #ccc;
+    font-size: 1.2rem;
+}
+
+.carrello-vuoto a {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* Grid */
+.carrello-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 30px;
+    align-items: start;
+}
+
+/* Items */
+.carrello-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.carrello-item {
+    display: grid;
+    grid-template-columns: 80px 1fr 130px 100px 50px;
+    gap: 15px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.item-immagine img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.no-image {
+    width: 80px;
+    height: 80px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.item-info h3 {
+    margin: 0 0 5px 0;
+}
+
+.item-info h3 a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.item-info h3 a:hover {
+    color: #4CAF50;
+}
+
+.item-prezzo {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.item-quantita button {
+    width: 30px;
+    height: 30px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.item-quantita input {
+    width: 40px;
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.item-subtotale {
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.btn-remove {
+    color: #f44336;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.btn-remove:hover {
+    color: #d32f2f;
+}
+
+/* Riepilogo */
+.carrello-riepilogo {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 25px;
+    position: sticky;
+    top: 100px;
+}
+
+.carrello-riepilogo h3 {
+    color: #fff;
+    margin: 0 0 20px 0;
+    font-size: 1.3rem;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.riepilogo-riga {
+    display: flex;
+    justify-content: space-between;
+    color: #ccc;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.riepilogo-riga.totale {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 15px;
+}
+
+.btn-acquista, .btn-svuota, .btn-continua, .btn-primary {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: all 0.3s;
+}
+
+.btn-acquista {
+    background: #4CAF50;
+    color: #fff;
+}
+
+.btn-acquista:hover {
+    background: #388E3C;
+}
+
+.btn-svuota {
+    background: transparent;
+    color: #f44336;
+    border: 1px solid #f44336;
+}
+
+.btn-svuota:hover {
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.btn-continua {
+    background: transparent;
+    color: #ccc;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn-continua:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #1e40af;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .carrello-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .carrello-item {
+        grid-template-columns: 60px 1fr;
+        gap: 10px;
+    }
+    
+    .item-quantita, .item-subtotale, .item-rimuovi {
+        grid-column: 2;
+    }
+    
+    .carrello-riepilogo {
+        position: static;
+    }
+}

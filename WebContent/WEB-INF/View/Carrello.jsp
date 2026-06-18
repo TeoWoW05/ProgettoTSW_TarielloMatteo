@@ -73,7 +73,7 @@
                             
                             <div class="item-info">
                                 <h3>
-                                    <a href="${pageContext.request.contextPath}/prodotto?id=<%= item.getProdotto().getCodiceProdotto() %>">
+                                    <a href="${pageContext.request.contextPath}/DettagliServlet?id=<%= item.getProdotto().getCodiceProdotto() %>">
                                         <%= item.getProdotto().getNome() %>
                                     </a>
                                 </h3>
@@ -81,8 +81,8 @@
                             </div>
                             
                             <div class="item-quantita">
-                                <form action="${pageContext.request.contextPath}/carrello" method="GET" style="display: flex; align-items: center; gap: 5px;">
-                                    <input type="hidden" name="action" value="update">
+                                <form action="${pageContext.request.contextPath}/CarrelloServlet" method="GET" style="display: flex; align-items: center; gap: 5px;">
+                                    <input type="hidden" name="action" value="aggiorna">
                                     <input type="hidden" name="id" value="<%= item.getProdotto().getCodiceProdotto() %>">
                                     <button type="button" onclick="this.parentNode.querySelector('input[name=qty]').stepDown(); this.parentNode.submit();">−</button>
                                     <input type="number" name="qty" value="<%= item.getQuantita() %>" 
@@ -97,7 +97,7 @@
                             </div>
                             
                             <div class="item-rimuovi">
-                                <a href="${pageContext.request.contextPath}/carrello?action=remove&id=<%= item.getProdotto().getCodiceProdotto() %>" 
+                                <a href="${pageContext.request.contextPath}/CarrelloServlet?action=rimuovi&id=<%= item.getProdotto().getCodiceProdotto() %>" 
                                    class="btn-remove" 
                                    onclick="return confirm('Rimuovere questo prodotto?')">
                                     🗑️
@@ -127,7 +127,7 @@
                         ⚡ Procedi all'acquisto
                     </a>
                     
-                    <a href="${pageContext.request.contextPath}/carrello?action=clear" 
+                    <a href="${pageContext.request.contextPath}/CarrelloServlet?action=clear" 
                        class="btn-svuota" 
                        onclick="return confirm('Svuotare il carrello?')">
                         🗑️ Svuota carrello

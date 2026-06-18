@@ -79,7 +79,7 @@ public class CarrelloServlet extends HttpServlet {
 			
 			response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
 			
-		}else if("aggionra".equals(action)) {
+		}else if("aggiorna".equals(action)) {
 			
 			int id = Integer.parseInt(request.getParameter("id"));
 			int qty = Integer.parseInt(request.getParameter("qty"));

@@ -160,7 +160,7 @@
                         if (p.getQuantitaMagazzino() > 0) {
                             // Il carrello è accessibile a tutti (anche non loggati)
                         %>
-                            <a href="${pageContext.request.contextPath}/carrello?action=add&id=<%= p.getCodiceProdotto() %>" 
+                            <a href="${pageContext.request.contextPath}/CarrelloServlet?action=aggiungi&id=<%= p.getCodiceProdotto() %>" 
                                class="btn-carrello">Aggiungi al carrello</a>
                         <%
                         } else {

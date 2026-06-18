@@ -32,7 +32,7 @@ function logPass() {
                   // Aggiorna link carrello e acquista
                   var id = '<%= prodotto.getCodiceProdotto() %>';
                   document.getElementById('btn-carrello').href = 
-                      '${pageContext.request.contextPath}/carrello?action=add&id=' + id + '&qty=' + newQty;
+                      '${pageContext.request.contextPath}/CarrelloServlet?action=add&id=' + id + '&qty=' + newQty;
                   document.getElementById('btn-acquista').href = 
                       '${pageContext.request.contextPath}/checkout?action=buynow&id=' + id + '&qty=' + newQty;
               }
