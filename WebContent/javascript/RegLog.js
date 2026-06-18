@@ -32,9 +32,9 @@ function logPass() {
                   // Aggiorna link carrello e acquista
                   var id = '<%= prodotto.getCodiceProdotto() %>';
                   document.getElementById('btn-carrello').href = 
-                      '${pageContext.request.contextPath}/CarrelloServlet?action=add&id=' + id + '&qty=' + newQty;
+                      '/CarrelloServlet?action=add&id=' + id + '&qty=' + newQty;
                   document.getElementById('btn-acquista').href = 
-                      '${pageContext.request.contextPath}/checkout?action=buynow&id=' + id + '&qty=' + newQty;
+                      '/checkout?action=buynow&id=' + id + '&qty=' + newQty;
               }
           }
 		  
@@ -42,7 +42,7 @@ function logPass() {
 		          document.getElementById('deleteModal').style.display = 'flex';
 		          document.getElementById('modalProductName').textContent = nome;
 		          document.getElementById('confirmDeleteBtn').href = 
-		              '${pageContext.request.contextPath}/EliminaProdServlet?id=' + id;
+		              '/EliminaProdServlet?id=' + id;
 		      }
 		      
 		      function closeDeleteModal() {

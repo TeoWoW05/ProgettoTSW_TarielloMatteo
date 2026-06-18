@@ -8,6 +8,7 @@
 <title>Piece-B-Piece - Prodotti</title>
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/Prodotti.css">
  <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/General.css">
+ <script> const contextPath = "${pageContext.request.contextPath}"; </script>
      <script src="${pageContext.request.contextPath}/javascript/RegLog.js"></script>
 </head>
 <body>

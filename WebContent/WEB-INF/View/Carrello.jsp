@@ -7,6 +7,8 @@
     <title>Carrello - Piece B Piece</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/General.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/Carrello.css">
+    <script> const contextPath = "${pageContext.request.contextPath}"; </script>
+     <script src="${pageContext.request.contextPath}/javascript/Modali.js"></script>
 </head>
 <body>
 
@@ -96,12 +98,23 @@
                                 € <%= String.format("%.2f", item.getSubtotale()).replace(",", ".") %>
                             </div>
                             
+                            <%
+							// Prepara il nome del prodotto per JavaScript
+							String nomePulito = item.getProdotto().getNome()
+    						.replace("\\", "\\\\")   // Escape backslash
+    						.replace("'", "\\'")     // Escape apice singolo
+    						.replace("\"", "&quot;"); // Escape virgolette
+								
+						    %>
+                            
                             <div class="item-rimuovi">
-                                <a href="${pageContext.request.contextPath}/CarrelloServlet?action=rimuovi&id=<%= item.getProdotto().getCodiceProdotto() %>" 
-                                   class="btn-remove" 
-                                   onclick="return confirm('Rimuovere questo prodotto?')">
-                                    🗑️
-                                </a>
+                                 <button type="button" 
+            						class="btn-remove"
+           							data-id="<%= item.getProdotto().getCodiceProdotto() %>"
+            						data-nome="<%= item.getProdotto().getNome() %>"
+            						onclick="openRemoveModal(this)">
+       								 🗑️
+    							</button>
                             </div>
                         </div>
                     <%
@@ -127,11 +140,9 @@
                         ⚡ Procedi all'acquisto
                     </a>
                     
-                    <a href="${pageContext.request.contextPath}/CarrelloServlet?action=clear" 
-                       class="btn-svuota" 
-                       onclick="return confirm('Svuotare il carrello?')">
+ 					<button type="button" class="btn-svuota" onclick="openClearModal()">
                         🗑️ Svuota carrello
-                    </a>
+                    </button>
                     
                     <a href="${pageContext.request.contextPath}/ProdottiServlet" class="btn-continua">
                         ← Continua lo shopping
@@ -141,6 +152,38 @@
         <%
         }
         %>
+    </div>
+    
+      <div id="removeModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🗑️ Rimuovi Prodotto</h3>
+            </div>
+            <div class="modal-body">
+                <p>Sei sicuro di voler rimuovere questo prodotto dal carrello?</p>
+                <p class="modal-product-name" id="modalRemoveProductName"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeRemoveModal()">❌ Annulla</button>
+                <a id="confirmRemoveBtn" href="#" class="btn-rimuovi">🗑️ Rimuovi</a>
+            </div>
+        </div>
+    </div>
+    
+     <div id="clearModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚠️ Svuota Carrello</h3>
+            </div>
+            <div class="modal-body">
+                <p>Sei sicuro di voler svuotare completamente il carrello?</p>
+                <p style="color: #f44336; font-size: 0.9rem;">Tutti i prodotti saranno rimossi!</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeClearModal()">❌ Annulla</button>
+                <a href="${pageContext.request.contextPath}/CarrelloServlet?action=clear" class="btn-svuota-modale">🗑️ Svuota</a>
+            </div>
+        </div>
     </div>
 
     <%@ include file="Footer.jsp" %>
