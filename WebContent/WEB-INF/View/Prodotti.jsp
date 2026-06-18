@@ -35,7 +35,7 @@
 	if(isAdmin){
 %>
 
-	<a href="${pageContext.request.contextPath}/AggiungiProdottoServlet" class="btn-aggiungi">
+	<a href="${pageContext.request.contextPath}/AggiungiModificaProdottoServlet" class="btn-aggiungi">
 	+ Aggiungi Prodotto
 	</a>
 	<% } %>

@@ -54,6 +54,14 @@ public class Carrello implements Serializable{
 		return count;
 	}
 	
+	 public float getTotale() {
+	        float totale = 0;
+	        for (CarrelloItem item : items) {
+	            totale += item.getProdotto().getCosto() * item.getQuantita();
+	        }
+	        return totale;
+	    }
+	
 	public void svuota() {
 		items.clear();
 	}
