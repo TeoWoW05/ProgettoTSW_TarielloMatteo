@@ -209,14 +209,6 @@
     cursor: not-allowed;
 }
 
-.notifica-disponibilita a {
-    color: #2196F3;
-    text-decoration: none;
-}
-
-.notifica-disponibilita a:hover {
-    text-decoration: underline;
-}
 
 /* Torna ai prodotti */
 .btn-back {

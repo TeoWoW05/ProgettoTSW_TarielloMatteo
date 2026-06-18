@@ -106,7 +106,7 @@
                         </div>
                         
                         <!-- Pulsante carrello -->
-                        <a href="${pageContext.request.contextPath}/CarrelloServlet?action=add&id=<%= prodotto.getCodiceProdotto() %>&qty=1" 
+                        <a href="${pageContext.request.contextPath}/CarrelloServlet?action=aggiungi&id=<%= prodotto.getCodiceProdotto() %>&qty=1" 
                            class="btn-carrello" 
                            id="btn-carrello">
                             🛒 Aggiungi al carrello
@@ -124,12 +124,7 @@
                         <button class="btn-esaurito" disabled>
                             ❌ Prodotto non disponibile
                         </button>
-                        
-                        <p class="notifica-disponibilita">
-                            <a href="${pageContext.request.contextPath}/notifica?id=<%= prodotto.getCodiceProdotto() %>">
-                                🔔 Avvisami quando torna disponibile
-                            </a>
-                        </p>
+                   
                     <%
                     }
                     %>
