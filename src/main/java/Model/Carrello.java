@@ -11,10 +11,14 @@ public class Carrello implements Serializable{
 	}
 	
 	public void aggiungiProdotto(Prodotto prodotto, int quantità) {
-		for(CarrelloItem item : items) {
-			if(item.getProdotto().getCodiceProdotto() == prodotto.getCodiceProdotto()) {
-				item.setQuantita(item.getQuantita() + quantità);
-			}
+		 for (int i = 0; i < items.size(); i++) {
+	            CarrelloItem item = items.get(i);
+	          
+	            if (item.getProdotto().getCodiceProdotto() == prodotto.getCodiceProdotto()) {
+	                
+	                item.setQuantita(item.getQuantita() + quantità);
+	                return;
+	            }
 		}
 		
 		items.add(new CarrelloItem(prodotto,quantità));
@@ -30,16 +34,17 @@ public class Carrello implements Serializable{
 	}
 	
 	public void aggiornaQuantita(int codiceProdotto,int nuovaQuantita) {
-		for(CarrelloItem item : items) {
-			if(item.getProdotto().getCodiceProdotto() == codiceProdotto) {
-				if(nuovaQuantita <= 0) {
-					rimuoviProdotto(codiceProdotto);
-				}else {
-					item.setQuantita(nuovaQuantita);
-				}
-				return;
-			}
-		}
+		 for (int i = 0; i < items.size(); i++) {
+	            CarrelloItem item = items.get(i);
+	            if (item.getProdotto().getCodiceProdotto() == codiceProdotto) {
+	                if (nuovaQuantita <= 0) {
+	                    items.remove(i);
+	                } else {
+	                    item.setQuantita(nuovaQuantita);
+	                }
+	                return;
+	            }
+	        }
 	}
 	
 	public ArrayList<CarrelloItem> getItems(){
@@ -48,15 +53,16 @@ public class Carrello implements Serializable{
 	
 	public int getNumeroProdotti() {
 		int count = 0;
-		for(CarrelloItem item : items) {
-			count += item.getQuantita();
-		}
-		return count;
+		for (int i = 0; i < items.size(); i++) {
+            count += items.get(i).getQuantita();
+        }
+        return count;
 	}
 	
 	 public float getTotale() {
 	        float totale = 0;
-	        for (CarrelloItem item : items) {
+	        for (int i = 0; i < items.size(); i++) {
+	            CarrelloItem item = items.get(i);
 	            totale += item.getProdotto().getCosto() * item.getQuantita();
 	        }
 	        return totale;
