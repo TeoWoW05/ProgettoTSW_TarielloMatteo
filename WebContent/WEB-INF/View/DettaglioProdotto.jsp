@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="Model.Prodotto, java.util.List" %>
+<%@ page import="Model.Prodotto, java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,7 @@
 
     <%
         Prodotto prodotto = (Prodotto) request.getAttribute("prodotto");
-        List<String> categorie = (List<String>) request.getAttribute("categorie");
+        ArrayList<String> categorie = (ArrayList<String>) request.getAttribute("categorie");
         
         if (prodotto != null) {
     %>
@@ -143,20 +143,19 @@
                 <!-- Azioni Admin -->
                 <%
                 Object utenteSes = session.getAttribute("utente");
-                if (utenteObj != null) {
+                if (utenteSes != null) {
                     Model.Utente utente = (Model.Utente) utenteSes;
                     if (utente.isAdmin()) {
                 %>
                     <div class="admin-actions">
                         <h4>Azioni Admin</h4>
                         <div class="admin-buttons">
-                            <a href="${pageContext.request.contextPath}/admin/modificaProdotto?id=<%= prodotto.getCodiceProdotto() %>" 
+                            <a href="${pageContext.request.contextPath}/AggiungiModificaProdottoServlet?id=<%= prodotto.getCodiceProdotto() %>" 
                                class="btn-modifica">✏️ Modifica</a>
-                            <a href="${pageContext.request.contextPath}/admin/aggiungiQuantita?id=<%= prodotto.getCodiceProdotto() %>" 
-                               class="btn-qta">📦 + Quantità</a>
-                            <a href="${pageContext.request.contextPath}/admin/eliminaProdotto?id=<%= prodotto.getCodiceProdotto() %>" 
-                               class="btn-elimina" 
-                               onclick="return confirm('Eliminare questo prodotto?')">🗑️ Elimina</a>
+                             <button type="button" class="btn-elimina" 
+        					onclick="openDeleteModal('<%= prodotto.getCodiceProdotto() %>', '<%= prodotto.getNome().replace("'", "\\'") %>')">
+    						 Elimina
+							</button>
                         </div>
                     </div>
                 <%
@@ -179,6 +178,23 @@
     <%
         }
     %>
+    
+    <div id="deleteModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>⚠️ Conferma Eliminazione</h3>
+        </div>
+        <div class="modal-body">
+            <p>Sei sicuro di voler eliminare questo prodotto?</p>
+            <p class="modal-product-name" id="modalProductName"></p>
+            <p style="color: #f44336; font-size: 0.9rem;">Questa azione è irreversibile!</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-cancel" onclick="closeDeleteModal()">❌ Annulla</button>
+            <a id="confirmDeleteBtn" href="#" class="btn-elimina"> Elimina</a>
+        </div>
+    </div>
+</div>
 
        <%@ include file ="Footer.jsp" %>
 

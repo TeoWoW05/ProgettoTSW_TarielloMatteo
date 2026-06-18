@@ -98,7 +98,8 @@ public class AggiungiModificaProdottoServlet extends HttpServlet {
             return;
         }
         
-        String idStr = request.getParameter("id");        String nome = request.getParameter("nome");
+        String idStr = request.getParameter("id");        
+        String nome = request.getParameter("nome");
         String descrizione = request.getParameter("descrizione");
         String costoStr = request.getParameter("costo");
         String quantitaStr = request.getParameter("quantita");

@@ -78,7 +78,7 @@
         <!-- Griglia prodotti -->
         <div class="prodotti-grid">
             <%
-            List<Prodotto> prodotti = (List<Prodotto>) request.getAttribute("prodotti");
+            ArrayList<Prodotto> prodotti = (ArrayList<Prodotto>) request.getAttribute("prodotti");
             
             if (prodotti != null && !prodotti.isEmpty()) {
                 // Recupera la mappa delle categorie
