@@ -40,7 +40,7 @@
                   } else{
                 	  Model.Utente utente = (Model.Utente) utenteObj;
                 %>
-                <li><span id="utente"><a href="${pageContext.request.contextPath}/ProfiloUtenteServlet"><%= utente.getNickname() %> </a></span></li>
+                <li><span id="utente"><a href="${pageContext.request.contextPath}/ProfiloUtenteServlet"> <%= utente.getNickname() %> </a></span></li>
                 <% if (utente.isAdmin()) { %>
         <li><a href="${pageContext.request.contextPath}/admin/dashboard">Pannello Admin</a></li>
         	 <% } %>

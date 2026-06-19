@@ -74,7 +74,7 @@
 }
 
 .info-label {
-    color: #888;
+    color: #ffffff;
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -100,7 +100,7 @@
 }
 
 .form-group label {
-    color: #ccc;
+    color: #ffffff;
     font-weight: 600;
     font-size: 0.85rem;
     text-transform: uppercase;
