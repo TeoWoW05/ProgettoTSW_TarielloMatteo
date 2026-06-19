@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -63,7 +62,7 @@ public class ProfiloUtenteServlet extends HttpServlet {
             e.printStackTrace();
         }
         
-        request.getRequestDispatcher("/WEB-INF/View/Profilo.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/View/ProfiloUtente.jsp").forward(request, response);
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
@@ -82,40 +81,7 @@ public class ProfiloUtenteServlet extends HttpServlet {
         Utente utente = (Utente) session.getAttribute("utente");
         
         try {
-            if ("aggiornaProfilo".equals(action)) {
-                
-                String nome = request.getParameter("nome");
-                String cognome = request.getParameter("cognome");
-                String nickname = request.getParameter("nickname");
-                
-                if (nome == null || nome.trim().isEmpty() ||
-                    cognome == null || cognome.trim().isEmpty() ||
-                    nickname == null || nickname.trim().isEmpty()) {
-                    
-                    session.setAttribute("errore", "Nome, cognome e nickname sono obbligatori!");
-                    response.sendRedirect(request.getContextPath() + "/profilo");
-                    return;
-                }
-                
-                if (!nickname.equals(utente.getNickname()) && utenteDao.existsByNickname(nickname)) {
-                    session.setAttribute("errore", "Nickname già in uso!");
-                    response.sendRedirect(request.getContextPath() + "/profilo");
-                    return;
-                }
-                
-                utente.setName(nome);
-                utente.setCognome(cognome);
-                utente.setNickname(nickname);
-                
-                utenteDao.doUpdate(utente);
-                
-                session.setAttribute("utente", utente);
-                session.setAttribute("nickname", utente.getNickname());
-                
-                session.setAttribute("messaggioSuccesso", "Profilo aggiornato con successo!");
-                response.sendRedirect(request.getContextPath() + "/profilo");
-                
-            } else if ("cambiaPassword".equals(action)) {
+             if ("cambiaPassword".equals(action)) {
                 
                 String vecchiaPassword = request.getParameter("vecchiaPassword");
                 String nuovaPassword = request.getParameter("nuovaPassword");
@@ -126,26 +92,26 @@ public class ProfiloUtenteServlet extends HttpServlet {
                     confermaPassword == null || confermaPassword.isEmpty()) {
                     
                     session.setAttribute("errorePassword", "Tutti i campi sono obbligatori!");
-                    response.sendRedirect(request.getContextPath() + "/profilo");
+                    response.sendRedirect(request.getContextPath() + "/ProfiloUtenteServlet");
                     return;
                 }
                 
                 
                 if (!PasswordHashing.checkPassword(vecchiaPassword, utente.getPass())) {
                     session.setAttribute("errorePassword", "Password attuale errata!");
-                    response.sendRedirect(request.getContextPath() + "/profilo");
+                    response.sendRedirect(request.getContextPath() + "/ProfiloUtenteServlet");
                     return;
                 }
                 
                 if (!nuovaPassword.equals(confermaPassword)) {
                     session.setAttribute("errorePassword", "Le nuove password non coincidono!");
-                    response.sendRedirect(request.getContextPath() + "/profilo");
+                    response.sendRedirect(request.getContextPath() + "/ProfiloUtenteServlet");
                     return;
                 }
                 
                 if (nuovaPassword.length() < 6) {
                     session.setAttribute("errorePassword", "Minimo 6 caratteri!");
-                    response.sendRedirect(request.getContextPath() + "/profilo");
+                    response.sendRedirect(request.getContextPath() + "/ProfiloUtenteServlet");
                     return;
                 }
                 
@@ -156,13 +122,13 @@ public class ProfiloUtenteServlet extends HttpServlet {
                 
                 session.setAttribute("utente", utente);
                 session.setAttribute("messaggioSuccesso", "Password cambiata con successo!");
-                response.sendRedirect(request.getContextPath() + "/profilo");
+                response.sendRedirect(request.getContextPath() + "/ProfiloUtenteServlet");
             }
             
         } catch (SQLException e) {
             e.printStackTrace();
             session.setAttribute("errore", "Errore nell'aggiornamento");
-            response.sendRedirect(request.getContextPath() + "/profilo");
+            response.sendRedirect(request.getContextPath() + "/ProfiloUtenteServlet");
         }
     }
 }
