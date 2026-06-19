@@ -8,8 +8,8 @@ public class Ordine implements Serializable {
 	
 public Ordine() {}	
 	
-public Ordine(int id, String email_utente, float totale_ordine, int pan, int CVV, int scadenza, String via,
-			String città, int cap, int civico, Timestamp data_ordine, String stato) {
+public Ordine(int id, String email_utente, float totale_ordine, int pan, int CVV, String scadenza, String via,
+			String città, int cap, String civico, Timestamp data_ordine, String stato) {
 		this.id = id;
 		this.email_utente = email_utente;
 		this.totale_ordine = totale_ordine;
@@ -64,11 +64,11 @@ public void setCVV(int cVV) {
 	CVV = cVV;
 }
 
-public int getScadenza() {
+public String getScadenza() {
 	return scadenza;
 }
 
-public void setScadenza(int scadenza) {
+public void setScadenza(String scadenza) {
 	this.scadenza = scadenza;
 }
 
@@ -96,11 +96,11 @@ public void setCap(int cap) {
 	this.cap = cap;
 }
 
-public int getCivico() {
+public String getCivico() {
 	return civico;
 }
 
-public void setCivico(int civico) {
+public void setCivico(String civico) {
 	this.civico = civico;
 }
 
@@ -151,11 +151,11 @@ private String email_utente;
 private float totale_ordine;
 private int pan;
 private int CVV;
-private int scadenza;
+private String scadenza;
 private String via;
 private String città;
 private int cap;
-private int civico;
+private String civico;
 private Timestamp data_ordine;
 private String stato;
 
