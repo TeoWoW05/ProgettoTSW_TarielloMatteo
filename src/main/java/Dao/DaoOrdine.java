@@ -36,7 +36,7 @@ public class DaoOrdine implements DaoOrdiniInterface{
 	            ps.setString(5, ordine.getCittà());
 	            ps.setString(6, ordine.getVia());
 	            ps.setInt(7, ordine.getCVV());
-	            ps.setInt(8, ordine.getPan());
+	            ps.setLong(8, ordine.getPan());
 	            ps.setString(9, ordine.getScadenza());         
 	            ps.setString(10, ordine.getStato() != null ? ordine.getStato() : "In elaborazione");
 	            
@@ -121,7 +121,7 @@ public class DaoOrdine implements DaoOrdiniInterface{
 	        ordine.setEmail_utente(rs.getString("email_utente"));
 	        ordine.setDataOrdine(rs.getTimestamp("data_ordine"));
 	        ordine.setTotale_ordine(rs.getFloat("totale_ordine"));
-	        ordine.setPan(rs.getInt("pan"));
+	        ordine.setPan(rs.getLong("pan"));
 	        ordine.setCVV(rs.getInt("CVV"));
 	        ordine.setScadenza(rs.getString("scadenza"));
 	        ordine.setVia(rs.getString("via"));

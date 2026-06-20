@@ -8,7 +8,7 @@ public class Ordine implements Serializable {
 	
 public Ordine() {}	
 	
-public Ordine(int id, String email_utente, float totale_ordine, int pan, int CVV, String scadenza, String via,
+public Ordine(int id, String email_utente, float totale_ordine, long pan, int CVV, String scadenza, String via,
 			String città, int cap, String civico, Timestamp data_ordine, String stato) {
 		this.id = id;
 		this.email_utente = email_utente;
@@ -48,11 +48,11 @@ public void setTotale_ordine(float totale_ordine) {
 	this.totale_ordine = totale_ordine;
 }
 
-public int getPan() {
+public long getPan() {
 	return pan;
 }
 
-public void setPan(int pan) {
+public void setPan(long pan) {
 	this.pan = pan;
 }
 
@@ -149,7 +149,7 @@ public String getCartaFormattata() {
 private int id;
 private String email_utente;
 private float totale_ordine;
-private int pan;
+private long pan;
 private int CVV;
 private String scadenza;
 private String via;

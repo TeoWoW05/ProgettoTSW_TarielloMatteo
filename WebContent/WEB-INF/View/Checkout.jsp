@@ -8,6 +8,7 @@
 <title>Checkout - Piece-B-Piece</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/General.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/Checkout.css">
+         <script src="${pageContext.request.contextPath}/javascript/Formattazione.js"></script>
 </head>
 <body>
  <%@ include file="Header.jsp" %>
@@ -70,19 +71,19 @@
                         
                         <div class="form-group">
                             <label for="pan">Numero Carta</label>
-                            <input type="text" id="pan" name="pan" placeholder="1234 5678 9012 3456" maxlength="19">
+                            <input type="text" id="pan" name="pan" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formattaCarta(this)">
                             <small>16 cifre</small>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group form-half">
                                 <label for="scadenza">Scadenza</label>
-                                <input type="text" id="scadenza" name="scadenza" placeholder="MM/AA" maxlength="5">
+                                <input type="text" id="scadenza" name="scadenza" placeholder="MM/AA" maxlength="5" oninput="formattaScadenza(this)">
                             </div>
                             
                             <div class="form-group form-half">
                                 <label for="cvv">CVV</label>
-                                <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3">
+                                <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                             </div>
                         </div>
                         

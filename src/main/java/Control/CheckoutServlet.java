@@ -48,7 +48,7 @@ public class CheckoutServlet extends HttpServlet {
 		if(session == null || session.getAttribute("utente") == null) {
 			session = request.getSession();
 			session.setAttribute("redirectAfterLogin", "/CheckoutServlet");
-			response.sendRedirect(request.getContextPath() + "LogServlet");
+			response.sendRedirect(request.getContextPath() + "/LogServlet");
 			return;
 		}
 		
@@ -112,17 +112,33 @@ request.setCharacterEncoding("UTF-8");
             Utente utente = (Utente) session.getAttribute("utente");
             Carrello carrello = (Carrello) session.getAttribute("carrello");
             
+            String panPulito = pan.replaceAll("[^0-9]", "");  // Rimuove spazi e caratteri non numerici
+            String cvvPulito = cvv.replaceAll("[^0-9]", "");
+            String capPulito = cap.replaceAll("[^0-9]", "");
+            
+            if (panPulito.length() != 16) {
+                session.setAttribute("erroreCheckout", "Il numero carta deve essere di 16 cifre!");
+                response.sendRedirect(request.getContextPath() + "/checkout");
+                return;
+            }
+            
+            if (cvvPulito.length() != 3) {
+                session.setAttribute("erroreCheckout", "Il CVV deve essere di 3 cifre!");
+                response.sendRedirect(request.getContextPath() + "/checkout");
+                return;
+            }
+            
             // Crea l'ordine
             Ordine ordine = new Ordine();
             ordine.setEmail_utente(utente.getEmail());
             ordine.setTotale_ordine(carrello.getTotale());
-            ordine.setVia(via);
-            ordine.setCivico(civico);
-            ordine.setCap(Integer.parseInt(cap));
-            ordine.setCittà(citta);
-            ordine.setPan(Integer.parseInt(pan.replace(" ", "")));
-            ordine.setScadenza(scadenza);
-            ordine.setCVV(Integer.parseInt(cvv));
+            ordine.setVia(via.trim());
+            ordine.setCivico(civico.trim());
+            ordine.setCap(Integer.parseInt(capPulito));
+            ordine.setCittà(citta.trim());
+            ordine.setPan(Long.parseLong(panPulito));
+            ordine.setScadenza(scadenza.trim());
+            ordine.setCVV(Integer.parseInt(cvvPulito));
             ordine.setStato("In elaborazione");
             
             // Salva l'ordine nel database
