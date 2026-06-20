@@ -42,6 +42,8 @@ public class CarrelloServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
+    	
+    	
         
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
@@ -167,18 +169,18 @@ public class CarrelloServlet extends HttpServlet {
 response.setContentType("application/json");
 response.setCharacterEncoding("UTF-8");
 
+// Usa PrintWriter
 PrintWriter out = response.getWriter();
 
-StringBuilder json = new StringBuilder("{");
-json.append("\"successo\":").append(successo).append(",");
-json.append("\"messaggio\":\"").append(messaggio).append("\",");
-json.append("\"numeroProdotti\":").append(carrello.getNumeroProdotti()).append(",");
-json.append("\"totale\":").append(carrello.getTotale());
-json.append("}");
-
-out.print(json.toString());
+// Crea JSON semplice
+out.print("{");
+out.print("\"successo\":" + successo + ",");
+out.print("\"messaggio\":\"" + messaggio + "\",");
+out.print("\"numeroProdotti\":" + carrello.getNumeroProdotti() + ",");
+out.print("\"totale\":" + carrello.getTotale());
+out.print("}");
 out.flush();
-}
+  }
 }
 
 

@@ -10,6 +10,7 @@
  <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/General.css">
  <script> const contextPath = "${pageContext.request.contextPath}"; </script>
      <script src="${pageContext.request.contextPath}/javascript/RegLog.js"></script>
+     <script src="${pageContext.request.contextPath}/javascript/Ajax.js"></script>
 </head>
 <body>
 <%@ include file ="Header.jsp" %>
@@ -161,8 +162,11 @@
                         if (p.getQuantitaMagazzino() > 0) {
                             // Il carrello è accessibile a tutti (anche non loggati)
                         %>
-                            <a href="${pageContext.request.contextPath}/CarrelloServlet?action=aggiungi&id=<%= p.getCodiceProdotto() %>" 
-                               class="btn-carrello">Aggiungi al carrello</a>
+                            <button type="button" 
+        					class="btn-carrello" 
+        					onclick="aggiungiAlCarrello(<%= p.getCodiceProdotto() %>, 1, this)">
+    						🛒 Aggiungi al carrello
+							</button>
                         <%
                         } else {
                         %>
