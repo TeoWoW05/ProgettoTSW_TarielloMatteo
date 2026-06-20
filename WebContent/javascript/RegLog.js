@@ -30,11 +30,13 @@ function logPass() {
                   input.value = newQty;
                   
                   // Aggiorna link carrello e acquista
-                  var id = '<%= prodotto.getCodiceProdotto() %>';
-                  document.getElementById('btn-carrello').href = 
-                      '/CarrelloServlet?action=add&id=' + id + '&qty=' + newQty;
-                  document.getElementById('btn-acquista').href = 
-                      'CheckoutServlet?action=buynow&id=' + id + '&qty=' + newQty;
+				  var id = '<%= prodotto.getCodiceProdotto() %>';
+				         
+				         
+				         var btnAcquista = document.getElementById('btn-acquista');
+				         if (btnAcquista) {
+				             btnAcquista.href = contextPath + '/CheckoutServlet?action=buynow&id=' + id + '&qty=' + newQty;
+				         }
               }
           }
 		  

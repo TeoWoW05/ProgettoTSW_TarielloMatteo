@@ -7,6 +7,7 @@
     <title>Dettaglio Prodotto - Piece B Piece</title>
    <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/General.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/dettaglio.css">
+     <script> const contextPath = "${pageContext.request.contextPath}"; </script>
     <script src="${pageContext.request.contextPath}/javascript/RegLog.js"></script>
     <script src="${pageContext.request.contextPath}/javascript/Ajax.js"></script>
 </head>
