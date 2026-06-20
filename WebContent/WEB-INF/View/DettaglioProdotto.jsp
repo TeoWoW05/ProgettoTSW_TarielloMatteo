@@ -8,6 +8,7 @@
    <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/General.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/dettaglio.css">
     <script src="${pageContext.request.contextPath}/javascript/RegLog.js"></script>
+    <script src="${pageContext.request.contextPath}/javascript/Ajax.js"></script>
 </head>
 <body>
 
@@ -106,12 +107,12 @@
                         </div>
                         
                         <!-- Pulsante carrello -->
-                        <a href="${pageContext.request.contextPath}/CarrelloServlet?action=aggiungi&id=<%= prodotto.getCodiceProdotto() %>&qty=1" 
-                           class="btn-carrello" 
-                           id="btn-carrello">
-                            🛒 Aggiungi al carrello
-                        </a>
-                        
+                        <button type="button" 
+       					 class="btn-carrello" 
+       					 id="btn-carrello"
+       					 onclick="aggiungiAlCarrello(<%= prodotto.getCodiceProdotto() %>, document.getElementById('qty').value, this)">
+    					🛒 Aggiungi al carrello
+						</button>
                         <!-- Pulsante acquisto diretto -->
                         <a href="${pageContext.request.contextPath}/CheckoutServlet?action=buynow&id=<%= prodotto.getCodiceProdotto() %>&qty=1" 
                            class="btn-acquista" 
