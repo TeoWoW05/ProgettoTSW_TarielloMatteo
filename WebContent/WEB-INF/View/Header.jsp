@@ -19,8 +19,8 @@
         </div>
 
         <div class="search-bar">
-            <form action="${pageContext.request.contextPath}/ricerca" method="GET">
-                <input type="text" name="q" placeholder="Cerca nel negozio..." value="${param.q}">
+            <form action="${pageContext.request.contextPath}/ProdottiServlet" method="GET">
+                <input type="text" name="cerca" placeholder="Cerca nel negozio..." value="${param.q}">
                 <button type="submit">🔍</button>
             </form>
         </div>
