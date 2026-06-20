@@ -34,7 +34,7 @@ function logPass() {
                   document.getElementById('btn-carrello').href = 
                       '/CarrelloServlet?action=add&id=' + id + '&qty=' + newQty;
                   document.getElementById('btn-acquista').href = 
-                      '/checkout?action=buynow&id=' + id + '&qty=' + newQty;
+                      'CheckoutServlet?action=buynow&id=' + id + '&qty=' + newQty;
               }
           }
 		  

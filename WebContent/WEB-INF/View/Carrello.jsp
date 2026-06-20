@@ -136,7 +136,7 @@
                         <span>€ <%= String.format("%.2f", carrello.getTotale()).replace(",", ".") %></span>
                     </div>
                     
-                    <a href="${pageContext.request.contextPath}/checkout" class="btn-acquista">
+                    <a href="${pageContext.request.contextPath}/CheckoutServlet" class="btn-acquista">
                         ⚡ Procedi all'acquisto
                     </a>
                     

@@ -113,7 +113,7 @@
                         </a>
                         
                         <!-- Pulsante acquisto diretto -->
-                        <a href="${pageContext.request.contextPath}/checkout?action=buynow&id=<%= prodotto.getCodiceProdotto() %>&qty=1" 
+                        <a href="${pageContext.request.contextPath}/CheckoutServlet?action=buynow&id=<%= prodotto.getCodiceProdotto() %>&qty=1" 
                            class="btn-acquista" 
                            id="btn-acquista">
                             ⚡ Acquista ora

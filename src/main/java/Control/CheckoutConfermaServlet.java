@@ -24,7 +24,7 @@ public class CheckoutConfermaServlet extends HttpServlet {
 		return;
 		}
 	
-		request.getRequestDispatcher("/WEB-INF/View/ConfermaOrdine.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/View/CheckoutConferma.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
