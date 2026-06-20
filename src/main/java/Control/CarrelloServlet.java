@@ -100,8 +100,9 @@ public class CarrelloServlet extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("id"));
                 carrello.rimuoviProdotto(id);
                 
-                if (!"true".equals(ajax)) {
-                    response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
+                if ("true".equals(ajax)) {
+                    inviaRispostaJSON(response, true, "Prodotto rimosso!", carrello);
+                    return;
                 }
                 
                 session.setAttribute("messaggioSuccesso", "Prodotto rimosso dal carrello!");
