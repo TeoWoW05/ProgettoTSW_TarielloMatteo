@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -44,6 +45,7 @@ public class CarrelloServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
+        String ajax = request.getParameter("ajax");
         
         Carrello carrello = (Carrello) session.getAttribute("carrello");
         
@@ -74,18 +76,32 @@ public class CarrelloServlet extends HttpServlet {
                     carrello.aggiungiProdotto(prodotto, qty);
                     session.setAttribute("carrello", carrello);
                     
+                    if ("true".equals(ajax)) {
+                        inviaRispostaJSON(response, true, 
+                            trovato ? "Quantità aggiornata!" : "Prodotto aggiunto!", 
+                            carrello);
+                        return;
+                    }
+                    
                     if (trovato) {
                         session.setAttribute("messaggioSuccesso", "Quantità aggiornata!");
                     } else {
                         session.setAttribute("messaggioSuccesso", "Prodotto aggiunto!");
                     }
                 }
-                response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
+                if (!"true".equals(ajax)) {
+                    response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
+                }
                 
             } else if ("rimuovi".equals(action)) {
                 
                 int id = Integer.parseInt(request.getParameter("id"));
                 carrello.rimuoviProdotto(id);
+                
+                if (!"true".equals(ajax)) {
+                    response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
+                }
+                
                 session.setAttribute("messaggioSuccesso", "Prodotto rimosso dal carrello!");
                 response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
                 
@@ -94,11 +110,23 @@ public class CarrelloServlet extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("id"));
                 int qty = Integer.parseInt(request.getParameter("qty"));
                 carrello.aggiornaQuantita(id, qty);
+                
+                if ("true".equals(ajax)) {
+                    inviaRispostaJSON(response, true, "Quantità aggiornata!", carrello);
+                    return;
+                }
+                
                 response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
                 
             } else if ("clear".equals(action)) {
                 
                 carrello.svuota();
+                
+                if ("true".equals(ajax)) {
+                    inviaRispostaJSON(response, true, "Carrello svuotato!", carrello);
+                    return;
+                }
+                
                 session.setAttribute("messaggioSuccesso", "Carrello svuotato!");
                 response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
                 
@@ -109,9 +137,21 @@ public class CarrelloServlet extends HttpServlet {
             }
             
         } catch (NumberFormatException e) {
+        	
+        	if ("true".equals(ajax)) {
+                inviaRispostaJSON(response, false, "Errore nei dati", carrello);
+                return;
+            }
+        	
             response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
         } catch (SQLException e) {
             e.printStackTrace();
+            
+            if ("true".equals(ajax)) {
+                inviaRispostaJSON(response, false, "Errore del server", carrello);
+                return;
+            }
+            
             request.setAttribute("errore", "Errore nel caricamento del prodotto");
             request.getRequestDispatcher("/WEB-INF/View/Error.jsp").forward(request, response);
         }
@@ -121,4 +161,25 @@ public class CarrelloServlet extends HttpServlet {
             throws ServletException, IOException {
         doGet(request, response);
     }
+    
+    private void inviaRispostaJSON(HttpServletResponse response, boolean successo, 
+            String messaggio, Carrello carrello) throws IOException {
+response.setContentType("application/json");
+response.setCharacterEncoding("UTF-8");
+
+PrintWriter out = response.getWriter();
+
+StringBuilder json = new StringBuilder("{");
+json.append("\"successo\":").append(successo).append(",");
+json.append("\"messaggio\":\"").append(messaggio).append("\",");
+json.append("\"numeroProdotti\":").append(carrello.getNumeroProdotti()).append(",");
+json.append("\"totale\":").append(carrello.getTotale());
+json.append("}");
+
+out.print(json.toString());
+out.flush();
 }
+}
+
+
+
