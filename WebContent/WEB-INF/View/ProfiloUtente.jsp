@@ -80,6 +80,10 @@
                 </div>
             </div>
             
+                     <%
+			if (!utente.isAdmin()) {
+			%>
+            
             <!-- Cambia Password -->
             <div class="profilo-card">
                 <h2>🔒 Cambia Password</h2>
@@ -107,6 +111,8 @@
                 }
                 %>
                 
+        
+                
                 <form action="${pageContext.request.contextPath}/ProfiloUtenteServlet" method="post" class="profilo-form">
                     <input type="hidden" name="action" value="cambiaPassword">
                     
@@ -127,8 +133,28 @@
                     
                     <button type="submit" class="btn-primary">🔐 Cambia Password</button>
                 </form>
+                
             </div>
+            <%
+				}
+			%>
             
+            <%
+			if (utente.isAdmin()) {
+			%>
+    		<div class="profilo-card profilo-card-ordini">
+        	<h2>📦 Gestione Ordini</h2>
+       			 <p style="color: #ccc; margin-bottom: 20px;">Visualizza e filtra tutti gli ordini dei clienti.</p>
+        			<a href="${pageContext.request.contextPath}/ControlloOrdiniServlet" class="btn-primary">
+            		📋 Vai alla gestione ordini
+        			</a>
+    		</div>
+<%
+}
+%>
+             <%
+			if (!utente.isAdmin()) {
+			%>
             <!-- Storico Ordini -->
             <div class="profilo-card profilo-card-ordini">
                 <h2>📦 I miei Ordini</h2>
@@ -172,7 +198,9 @@
                 }
                 %>
             </div>
-            
+            <%
+			}
+			%>
         </div>
       </div>
       </div>  

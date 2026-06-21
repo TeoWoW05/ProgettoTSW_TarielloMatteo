@@ -1,0 +1,142 @@
+/* Filtri */
+.filtri-ordini {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.filtri-form {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.filtro-gruppo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filtro-gruppo label {
+    color: #ccc;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.filtro-gruppo input {
+    padding: 10px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.filtro-azioni {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.btn-filtra, .btn-reset {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.btn-filtra {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+}
+
+.btn-filtra:hover {
+    background: #1e40af;
+}
+
+.btn-reset {
+    background: rgba(255,255,255,0.1);
+    color: #ccc;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn-reset:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Tabella */
+.tabella-container {
+    overflow-x: auto;
+}
+
+.tabella-ordini {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.tabella-ordini th {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    padding: 12px 15px;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+
+.tabella-ordini td {
+    padding: 12px 15px;
+    color: #ccc;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.tabella-ordini tr:hover td {
+    background: rgba(255,255,255,0.03);
+}
+
+.nessun-risultato {
+    text-align: center;
+    padding: 40px !important;
+    color: #888;
+}
+
+/* Stato badge */
+.stato-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.stato-in-elaborazione { background: rgba(255,152,0,0.2); color: #ff9800; }
+.stato-spedito { background: rgba(33,150,243,0.2); color: #2196F3; }
+.stato-consegnato { background: rgba(76,175,80,0.2); color: #4CAF50; }
+.stato-cancellato { background: rgba(244,67,54,0.2); color: #f44336; }
+
+/* Riepilogo */
+.riepilogo-ordini {
+    margin-top: 20px;
+    padding: 15px 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 5px;
+    display: flex;
+    gap: 30px;
+}
+
+.riepilogo-ordini p {
+    color: #ccc;
+    margin: 0;
+}
+
+.riepilogo-ordini strong {
+    color: #fff;
+}

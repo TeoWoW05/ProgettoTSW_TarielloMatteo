@@ -100,7 +100,7 @@ public class ControlloOrdiniServlet extends HttpServlet {
 	            request.setAttribute("errore", "Errore nel caricamento ordini");
 	        }
 	        
-	        request.getRequestDispatcher("/WEB-INF/View/Admin/Ordini.jsp").forward(request, response);
+	        request.getRequestDispatcher("/WEB-INF/View/Ordini.jsp").forward(request, response);
 	    }
 	
 
