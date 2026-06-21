@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Header</title>
 <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/Header.css">
+<script src="${pageContext.request.contextPath}/javascript/Navbar.js"></script>
 </head>
 <body>
 
@@ -42,7 +43,7 @@
                 %>
                 <li><span id="utente"><a href="${pageContext.request.contextPath}/ProfiloUtenteServlet"> <%= utente.getNickname() %> </a></span></li>
                 <% if (utente.isAdmin()) { %>
-        <li><a href="${pageContext.request.contextPath}/admin/dashboard">Pannello Admin</a></li>
+        <li><a href="${pageContext.request.contextPath}/ControlloOrdiniServlet">Pannello Admin</a></li>
         	 <% } %>
             <li><a href="${pageContext.request.contextPath}/LogoutServ">Logout</a></li>
             <% } %>
