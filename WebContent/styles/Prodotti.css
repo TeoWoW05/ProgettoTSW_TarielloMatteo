@@ -198,8 +198,8 @@
     font-weight: 500;
     transition: background 0.3s;
     text-align: center;
-    flex: 1;
-    min-width: 100px;
+
+    min-width: 50px;
 }
 
 .btn-dettaglio:hover {
@@ -209,11 +209,12 @@
 }
 
 .btn-carrello {
-    background: #f59e0b;
+    background: rgb(255, 255, 255);
     color: #000;
     padding: 10px 18px;
     text-decoration: none;
     border-radius: 5px;
+    border: hidden;
     font-size: 0.9rem;
     font-weight: 500;
     transition: background 0.3s;
@@ -223,8 +224,9 @@
     cursor: pointer;
 }
 
+
 .btn-carrello:hover {
-    background: #d97706;
+    background: rgb(192, 192, 192);
     color: #000;
     text-decoration: none;
 }
@@ -245,7 +247,7 @@
 }
 
 .btn-modifica {
-    background: #2196F3;
+    background: black;
     color: white;
     padding: 8px 14px;
     border: none;
@@ -259,13 +261,13 @@
 }
 
 .btn-modifica:hover {
-    background: #1976D2;
+    background: gray;
     color: white;
     text-decoration: none;
 }
 
 .btn-elimina {
-    background: #f44336;
+    background: black;
     color: white;
     padding: 8px 14px;
     border: none;
@@ -279,7 +281,7 @@
 }
 
 .btn-elimina:hover {
-    background: #d32f2f;
+    background: gray;
     color: white;
     text-decoration: none;
 }

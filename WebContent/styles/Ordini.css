@@ -1,10 +1,41 @@
+
+.btn-back {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+    padding: 8px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.btn-back:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;  
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-header h1{
+	width: 60%;
+}
+
 /* Filtri */
 .filtri-ordini {
-    background: rgba(255,255,255,0.05);
+	box-shadow:  10px 10px 10px gray;
+    background:black;
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .filtri-form {
@@ -73,6 +104,7 @@
 
 /* Tabella */
 .tabella-container {
+	background:black;
     overflow-x: auto;
 }
 
@@ -124,6 +156,7 @@
 
 /* Riepilogo */
 .riepilogo-ordini {
+	border-color:black;
     margin-top: 20px;
     padding: 15px 20px;
     background: rgba(255,255,255,0.05);
