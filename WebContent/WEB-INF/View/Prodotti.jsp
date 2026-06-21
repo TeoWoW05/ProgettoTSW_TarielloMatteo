@@ -94,9 +94,9 @@
                     <%
                     if (p.getImmagine() != null && !p.getImmagine().isEmpty()) {
                     %>
-                        <img src="${pageContext.request.contextPath}/immagini/prodotti/<%= p.getImmagine() %>" 
+                         <a href="${pageContext.request.contextPath}/DettagliServlet?id=<%= p.getCodiceProdotto() %>" ><img src="${pageContext.request.contextPath}/immagini/prodotti/<%= p.getImmagine() %>" 
                              alt="<%= p.getNome() %>" 
-                             class="prodotto-immagine">
+                             class="prodotto-immagine"> </a>
                     <%
                     } else {
                     %>
