@@ -114,6 +114,26 @@ public class DaoOrdine implements DaoOrdiniInterface{
 	            ps.executeUpdate();
 	        }
 	    }
+	    
+	    public synchronized ArrayList<Ordine> doRetrieveByDateRange(String dataDa, String dataA) throws SQLException {
+	        ArrayList<Ordine> ordini = new ArrayList<>();
+	        String sql = "SELECT * FROM " + TABLE_NAME + 
+	                     " WHERE DATE(data_ordine) BETWEEN ? AND ? ORDER BY data_ordine DESC";
+	        
+	        try (Connection conn = ds.getConnection();
+	             PreparedStatement ps = conn.prepareStatement(sql)) {
+	            
+	            ps.setString(1, dataDa);  // Formato: YYYY-MM-DD
+	            ps.setString(2, dataA);
+	            
+	            try (ResultSet rs = ps.executeQuery()) {
+	                while (rs.next()) {
+	                    ordini.add(creaOrdine(rs));
+	                }
+	            }
+	        }
+	        return ordini;
+	    }
 	 
 	 private Ordine creaOrdine(ResultSet rs) throws SQLException {
 	        Ordine ordine = new Ordine();

@@ -11,4 +11,5 @@ public interface DaoOrdiniInterface {
 	ArrayList<Ordine> doRetrieveByUtente(String email) throws SQLException;
 	ArrayList<Ordine> doRetrieveAll() throws SQLException;
 	void updateStato(int id, String stato) throws SQLException;
+	ArrayList<Ordine> doRetrieveByDateRange(String dataDa, String dataA) throws SQLException;
 }
