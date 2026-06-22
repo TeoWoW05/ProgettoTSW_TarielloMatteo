@@ -54,6 +54,18 @@
     align-items: center;
 }
 
+.message {
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.message-success {
+    background: rgba(76, 175, 80, 0.2);
+    border: 1px solid #4CAF50;
+    color: #69f0ae;
+}
+
 .filtri select,
 .filtri input {
     padding: 10px 15px;

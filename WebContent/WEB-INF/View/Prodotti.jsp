@@ -15,6 +15,19 @@
 <body>
 <%@ include file ="Header.jsp" %>
 
+<%
+        String messaggio = (String) session.getAttribute("messaggioSuccesso");
+        if (messaggio != null) {
+        %>
+            <div class="message message-success">
+                <span>✅</span> <%= messaggio %>
+            </div>
+        <%
+            session.removeAttribute("messaggioSuccesso");
+        }
+        
+        %>
+
 <div class="page-header">
 <h1>
 <% String categoriaSelezionata = (String) request.getAttribute("categoriaSelezionata");
