@@ -163,6 +163,39 @@
     position: relative;
 }
 
+.cart-link {
+    position: relative;
+    
+    align-items: center;
+    gap: 5px;
+    padding-right:5px;
+}
+
+.cart-count {
+    background: #f44336;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 5px;
+    line-height: 1;
+}
+
+/* Animazione contatore */
+@keyframes cartBounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+
+.cart-count-bounce {
+    animation: cartBounce 0.3s ease;
+}
+
 /* Tablet */
 @media (max-width: 900px) {
     .logo h1 {
@@ -229,6 +262,8 @@
         display: none;
     }
 }
+
+
 
 /* Mobile piccolo */
 @media (max-width: 480px) {

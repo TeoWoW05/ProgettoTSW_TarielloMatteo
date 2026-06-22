@@ -1,4 +1,4 @@
-<%@page import="Model.Utente"%>
+<%@page import="Model.Utente, Model.Carrello"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     %>
@@ -30,7 +30,13 @@
             <ul>
                 <li><a href="${pageContext.request.contextPath}/HPServlet">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/ProdottiServlet">Prodotti</a></li>
-                <li><a href="${pageContext.request.contextPath}/CarrelloServlet">Carrello</a></li>
+                <li><a href="${pageContext.request.contextPath}/CarrelloServlet" class="cart-link">Carrello
+                <%
+                Carrello carrelloHeader = (Carrello)session.getAttribute("carrello");
+                int numeroProdotti = (carrelloHeader != null) ? carrelloHeader.getNumeroProdotti() : 0; 
+                %>
+                <span id="cart-count" class="cart-count" style="<%= numeroProdotti > 0 ? "": "display:none;"%>"> <%=numeroProdotti %></span>
+                </a></li>
                 <%
                   Object utenteObj = session.getAttribute("utente");
                   if(utenteObj == null){		

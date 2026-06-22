@@ -14,11 +14,8 @@ function aggiungiAlCarrello(idProdotto, quantita, bottone) {
             var risposta = JSON.parse(xhr.responseText);
             
             if (risposta.successo) {
-                // Aggiorna contatore carrello
-                var cartCount = document.getElementById('cart-count');
-                if (cartCount) {
-                    cartCount.textContent = risposta.numeroProdotti;
-                }
+              	
+				aggiornaContatoreCarrello(risposta.numeroProdotti);
                 
                 // Mostra notifica
                 mostraNotifica('✅ ' + risposta.messaggio, 'successo');
@@ -46,6 +43,23 @@ function aggiungiAlCarrello(idProdotto, quantita, bottone) {
     xhr.send();
 }
 
+function aggiornaContatoreCarrello(numero) {
+    var cartCount = document.getElementById('cart-count');
+    if (cartCount) {
+        cartCount.textContent = numero;
+        if (numero > 0) {
+            cartCount.style.display = 'flex';
+        } else {
+            cartCount.style.display = 'none';
+        }
+        
+        // Effetto animazione
+        cartCount.classList.add('cart-count-bounce');
+        setTimeout(function() {
+            cartCount.classList.remove('cart-count-bounce');
+        }, 300);
+    }
+
 function mostraNotifica(messaggio, tipo) {
     var notifica = document.createElement('div');
     notifica.textContent = messaggio;
@@ -61,4 +75,5 @@ function mostraNotifica(messaggio, tipo) {
         notifica.style.animation = 'slideOut 0.3s ease';
         setTimeout(function() { notifica.remove(); }, 300);
     }, 3000);
+}
 }
