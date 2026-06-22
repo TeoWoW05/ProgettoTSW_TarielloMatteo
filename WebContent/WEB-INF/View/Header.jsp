@@ -35,7 +35,7 @@
                 Carrello carrelloHeader = (Carrello)session.getAttribute("carrello");
                 int numeroProdotti = (carrelloHeader != null) ? carrelloHeader.getNumeroProdotti() : 0; 
                 %>
-                <span id="cart-count" class="cart-count" style="<%= numeroProdotti > 0 ? "": "display:none;"%>"> <%=numeroProdotti %></span>
+                <span id="cart-count" class="cart-count <%= numeroProdotti > 0 ? "visible" : "" %>"> <%=numeroProdotti %></span>
                 </a></li>
                 <%
                   Object utenteObj = session.getAttribute("utente");

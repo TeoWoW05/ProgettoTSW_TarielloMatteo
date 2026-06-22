@@ -48,9 +48,9 @@ function aggiornaContatoreCarrello(numero) {
     if (cartCount) {
         cartCount.textContent = numero;
         if (numero > 0) {
-            cartCount.style.display = 'flex';
+            cartCount.classList.add('visible');
         } else {
-            cartCount.style.display = 'none';
+            cartCount.classList.remove('visible');
         }
         
         // Effetto animazione
@@ -59,6 +59,7 @@ function aggiornaContatoreCarrello(numero) {
             cartCount.classList.remove('cart-count-bounce');
         }, 300);
     }
+}
 
 function mostraNotifica(messaggio, tipo) {
     var notifica = document.createElement('div');
@@ -75,5 +76,4 @@ function mostraNotifica(messaggio, tipo) {
         notifica.style.animation = 'slideOut 0.3s ease';
         setTimeout(function() { notifica.remove(); }, 300);
     }, 3000);
-}
 }
