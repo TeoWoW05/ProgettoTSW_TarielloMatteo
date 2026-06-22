@@ -20,7 +20,7 @@
         if (messaggio != null) {
         %>
             <div class="message message-success">
-                <span>✅</span> <%= messaggio %>
+                <span>✅<%= messaggio %></span>
             </div>
         <%
             session.removeAttribute("messaggioSuccesso");

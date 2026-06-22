@@ -54,16 +54,33 @@
     align-items: center;
 }
 
+/* Messaggi */
 .message {
+	margin-top: 20px;
     padding: 15px 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     margin-bottom: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.95rem;
+    font-weight: 500;
 }
 
 .message-success {
     background: rgba(76, 175, 80, 0.2);
     border: 1px solid #4CAF50;
     color: #69f0ae;
+}
+
+.message-error {
+    background: rgba(244, 67, 54, 0.2);
+    border: 1px solid #f44336;
+    color: #ff7961;
+}
+
+.message span {
+    margin-right: 8px;
 }
 
 .filtri select,

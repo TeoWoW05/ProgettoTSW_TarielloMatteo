@@ -166,6 +166,7 @@ public class AggiungiModificaProdottoServlet extends HttpServlet {
                 }
                 
                 session.setAttribute("messaggioSuccesso", "Prodotto modificato con successo!");
+                response.sendRedirect(request.getContextPath() + "/ProdottiServlet");
                 
             } else {
             
@@ -183,10 +184,10 @@ public class AggiungiModificaProdottoServlet extends HttpServlet {
             for (String cat : categorieSelezionate) {
                 prodottoDao.saveCategoriaProdotto(prodotto.getCodiceProdotto(), cat);
             }
-           }
             
             session.setAttribute("messaggioSuccesso", "Prodotto aggiunto con successo!");
             response.sendRedirect(request.getContextPath() + "/ProdottiServlet");
+           }
             
         } catch (Exception e) {
             request.setAttribute("errore", "Errore: " + e.getMessage());
