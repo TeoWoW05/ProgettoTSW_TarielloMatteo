@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Registrazione - Piece B Piece</title>
 <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/styles/General.css">
 <script src="${pageContext.request.contextPath}/javascript/RegLog.js"></script>
