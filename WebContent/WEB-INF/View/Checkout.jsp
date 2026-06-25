@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="Model.Carrello,  Model.CarrelloItem " %>
+    <%@ page import="Model.Carrello,  Model.CarrelloItem, Model.Prodotto " %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,11 @@
  <%@ include file="Header.jsp" %>
  
   <%
+  		Boolean acquistoDiretto = (Boolean) request.getAttribute("acquistoDiretto");
         Carrello carrello = (Carrello) session.getAttribute("carrello");
+        Float totaleDiretto = (Float) request.getAttribute("totale");
+        Integer buyNowQty = (Integer) session.getAttribute("buyNowQty");
+        Prodotto prodottoDiretto = (Prodotto)request.getAttribute("prodottoDiretto");
     %>
     
     <div class="checkout-container">
@@ -96,33 +100,75 @@
                 
             </div>
             
-            <!-- Riepilogo ordine -->
-            <div class="checkout-riepilogo">
+           <div class="checkout-riepilogo">
                 <div class="checkout-card">
                     <h2>📦 Riepilogo Ordine</h2>
                     
                     <div class="riepilogo-items">
                         <%
-                        for (CarrelloItem item : carrello.getItems()) {
+                        if (acquistoDiretto != null && acquistoDiretto && prodottoDiretto != null) {
+                            // Acquisto diretto: mostra solo questo prodotto
+                        %>
+                            <div class="riepilogo-item">
+                                <div class="riepilogo-item-info">
+                                    <span class="riepilogo-item-nome"><%= prodottoDiretto.getNome() %></span>
+                                    <span class="riepilogo-item-qty">x<%= buyNowQty %></span>
+                                </div>
+                                <span class="riepilogo-item-prezzo">
+                                    € <%= String.format("%.2f", prodottoDiretto.getCosto() * buyNowQty).replace(",", ".") %>
+                                </span>
+                            </div>
+                        <%
+                        } else if (carrello != null && !carrello.isEmpty()) {
+                            // Acquisto da carrello: mostra tutti i prodotti
+                            for (CarrelloItem item : carrello.getItems()) {
                         %>
                             <div class="riepilogo-item">
                                 <div class="riepilogo-item-info">
                                     <span class="riepilogo-item-nome"><%= item.getProdotto().getNome() %></span>
                                     <span class="riepilogo-item-qty">x<%= item.getQuantita() %></span>
                                 </div>
-                                <span class="riepilogo-item-prezzo">€ <%= String.format("%.2f", item.getSubtotale()).replace(",", ".") %></span>
+                                <span class="riepilogo-item-prezzo">
+                                    € <%= String.format("%.2f", item.getSubtotale()).replace(",", ".") %>
+                                </span>
                             </div>
                         <%
+                            }
                         }
                         %>
                     </div>
                     
-                    <div class="riepilogo-totale">
+                    
+                     <div class="riepilogo-totale">
                         <span>Totale</span>
-                        <span>€ <%= String.format("%.2f", carrello.getTotale()).replace(",", ".") %></span>
+                        <span>
+                            <%
+                            if (acquistoDiretto != null && acquistoDiretto && totaleDiretto != null) {
+                                out.print("€ " + String.format("%.2f", totaleDiretto).replace(",", "."));
+                            } else if (carrello != null) {
+                                out.print("€ " + String.format("%.2f", carrello.getTotale()).replace(",", "."));
+                            } else {
+                                out.print("€ 0.00");
+                            }
+                            %>
+                        </span>
                     </div>
                     
-                    <a href="${pageContext.request.contextPath}/CarrelloServlet" class="btn-back-link">← Torna al carrello</a>
+                    <%
+                    if (acquistoDiretto == null || !acquistoDiretto) {
+                    %>
+                        <a href="${pageContext.request.contextPath}/CarrelloServlet" class="btn-back-link">
+                            ← Torna al carrello
+                        </a>
+                    <%
+                    } else {
+                    %>
+                        <a href="${pageContext.request.contextPath}/ProdottiServlet" class="btn-back-link">
+                            ← Torna ai prodotti
+                        </a>
+                    <%
+                    }
+                    %>
                 </div>
             </div>
             

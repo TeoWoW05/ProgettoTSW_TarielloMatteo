@@ -50,7 +50,7 @@
                 }
             }
             %>
-        </div>
+        </div><!-- chiusura carosello -->
 
         <!-- Frecce -->
         <button class="carosello-btn carosello-prev" onclick="cambiaSlide(-1)">&#10094;</button>
@@ -68,7 +68,7 @@
             }
             %>
         </div>
-    </div>
+    </div><!-- chiusura carosello-container -->
 
     <!-- Prodotti in evidenza -->
     <div class="home-container">
@@ -103,7 +103,7 @@
                 }
             }
             %>
-        </div>
+        </div><!-- chiusura prodotti-grid -->
 
         <!-- Vedi tutti -->
         <div class="vedi-tutti">
@@ -111,7 +111,7 @@
                 Vedi tutti i prodotti →
             </a>
         </div>
-    </div>
+    </div><!-- chiusura home-container -->
 
     <%@ include file="Footer.jsp" %>
 

@@ -70,8 +70,8 @@ public class RegServlet extends HttpServlet {
 			return;
 		}
 		
-		if(password.length() < 6) {
-			request.setAttribute("Errore", "La password deve essere di almeno 6 caratteri!");
+		if(password.length() < 6 || password.length() > 20){
+			request.setAttribute("Errore", "La password deve essere compresa tra 6 e 20 caratteri");
 			request.getRequestDispatcher("/WEB-INF/View/Registrazione.jsp").forward(request, response);
 			
 			return;
