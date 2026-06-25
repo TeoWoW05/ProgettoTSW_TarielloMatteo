@@ -53,8 +53,8 @@
         </div>
 
         <!-- Frecce -->
-        <button class="carosello-btn carosello-prev" onclick="cambiaSlide(-1)">❮</button>
-        <button class="carosello-btn carosello-next" onclick="cambiaSlide(1)">❯</button>
+        <button class="carosello-btn carosello-prev" onclick="cambiaSlide(-1)">&#10094;</button>
+        <button class="carosello-btn carosello-next" onclick="cambiaSlide(1)">&#10095;</button>
 
         <!-- Pallini -->
         <div class="carosello-dots">
