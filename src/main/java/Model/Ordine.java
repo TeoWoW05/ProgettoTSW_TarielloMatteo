@@ -2,6 +2,9 @@ package Model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class Ordine implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -122,7 +125,9 @@ public void setStato(String stato) {
 
 public String getDataFormattata() {
     if (data_ordine != null) {
-        return new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm").format(data_ordine);
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm");
+        sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
+        return sdf.format(data_ordine);
     }
     return "";
 }

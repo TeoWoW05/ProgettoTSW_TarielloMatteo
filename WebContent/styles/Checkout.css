@@ -93,6 +93,10 @@
     flex: 1;
 }
 
+.form-group input:valid {
+    border-color: #4CAF50;
+}
+
 /* Pulsanti */
 .btn-acquista {
     width: 100%;
