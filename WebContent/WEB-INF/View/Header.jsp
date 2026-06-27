@@ -17,7 +17,7 @@
     <div class="header-container">
 
         <div class="logo">
-                <h1> PIECE-<span>B-PIECE</span></h1>
+            <h1> <a href="${pageContext.request.contextPath}/HPServlet">  PIECE-<span>B-PIECE</span> </a> </h1>
         </div>
 
         <div class="search-bar">

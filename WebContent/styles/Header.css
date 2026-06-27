@@ -20,6 +20,12 @@
     flex-wrap: wrap;
 }
 
+.logo a{
+	text-decoration: none;
+	color: inherit;
+	display:inline-block;
+}
+
 .logo h1 {
     font-size: 1.8rem;
     font-weight: 700;
@@ -36,6 +42,14 @@
 
 .logo a {
     text-decoration: none;
+}
+
+.logo a:hover h1{
+	opacity: 0.85;
+}
+
+.logo a:hover h1 span{
+	color: #ffffff;
 }
 
 .search-bar {
