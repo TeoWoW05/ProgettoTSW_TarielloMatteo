@@ -134,13 +134,11 @@ h1::after {
     font-weight: 600;
     font-size: 0.85rem;
     letter-spacing: 0.5px;
-    text-transform: uppercase;
     display: flex;
     align-items: center;
     gap: 8px;
     margin-top: 5px;
     margin-bottom: 15px;
-    cursor: pointer;
 }
 
 .reglog #mostraPass input[type="checkbox"] {
@@ -166,6 +164,8 @@ h1::after {
     transition: all 0.3s ease;
     box-sizing: border-box;
 }
+
+
 
 .reglog input[type="submit"]:hover {
     transform: translateY(-2px);
