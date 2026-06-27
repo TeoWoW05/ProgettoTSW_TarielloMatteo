@@ -44,7 +44,7 @@ function logPass() {
 		          document.getElementById('deleteModal').style.display = 'flex';
 		          document.getElementById('modalProductName').textContent = nome;
 		          document.getElementById('confirmDeleteBtn').href = 
-		              contextPath +'/EliminaProdServlet?id=' + id;
+		              contextPath +'/admin/EliminaProdServlet?id=' + id;
 		      }
 		      
 		      function closeDeleteModal() {

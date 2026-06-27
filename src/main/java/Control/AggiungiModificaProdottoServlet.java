@@ -20,7 +20,7 @@ import Dao.DaoProdotto;
 import Model.Categoria;
 import Model.Prodotto;
 
-@WebServlet("/AggiungiModificaProdottoServlet")
+@WebServlet("/admin/AggiungiModificaProdottoServlet")
 @MultipartConfig(
     fileSizeThreshold = 1024 * 1024,      // 1 MB
     maxFileSize = 1024 * 1024 * 10,       // 10 MB
@@ -46,11 +46,7 @@ public class AggiungiModificaProdottoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
-        HttpSession session = request.getSession(false);
-        if (session == null || !"admin".equals(session.getAttribute("ruolo"))) {
-            response.sendRedirect(request.getContextPath() + "/LogServlet");
-            return;
-        }
+     
         
         try {
             // Carica le categorie (servono sia per aggiunta che modifica)

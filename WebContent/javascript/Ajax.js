@@ -77,3 +77,30 @@ function mostraNotifica(messaggio, tipo) {
         setTimeout(function() { notifica.remove(); }, 300);
     }, 3000);
 }
+
+function aggiornaQuantitàCarrello(id, delta) {
+        var qtySpan = document.getElementById('qty-' + id);
+        var qtyAttuale = parseInt(qtySpan.textContent);
+        var nuovaQty = qtyAttuale + delta;
+        
+        // Controllo limiti
+        if (nuovaQty < 1) return;
+        
+        // Chiamata AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', contextPath + '/CarrelloServlet?action=aggiorna&id=' + id + '&qty=' + nuovaQty + '&ajax=true', true);
+        
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var risposta = JSON.parse(xhr.responseText);
+                if (risposta.successo) {
+                    qtySpan.textContent = nuovaQty;
+                    // Aggiorna anche il subtotale e il totale
+                    aggiornaContatoreCarrello(risposta.numeroProdotti);
+                    location.reload();  // Opzionale: ricarica per aggiornare i prezzi
+                }
+            }
+        };
+        xhr.send();
+    }
+

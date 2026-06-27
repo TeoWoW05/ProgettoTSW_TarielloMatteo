@@ -148,7 +148,7 @@
                     <div class="admin-actions">
                         <h4>Azioni Admin</h4>
                         <div class="admin-buttons">
-                            <a href="${pageContext.request.contextPath}/AggiungiModificaProdottoServlet?id=<%= prodotto.getCodiceProdotto() %>" 
+                            <a href="${pageContext.request.contextPath}/admin/AggiungiModificaProdottoServlet?id=<%= prodotto.getCodiceProdotto() %>" 
                                class="btn-modifica">✏️ Modifica</a>
                              <button type="button" class="btn-elimina" 
         					onclick="openDeleteModal('<%= prodotto.getCodiceProdotto() %>', '<%= prodotto.getNome().replace("'", "\\'") %>')">

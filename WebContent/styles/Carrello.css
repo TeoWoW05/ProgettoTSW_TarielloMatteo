@@ -109,6 +109,12 @@
     margin: 0;
 }
 
+.item-quantita {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 .item-quantita button {
     width: 30px;
     height: 30px;
@@ -116,7 +122,23 @@
     border: 1px solid rgba(255,255,255,0.2);
     color: #fff;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 5px;
+    font-size: 1rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.item-quantita button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.item-quantita span {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    min-width: 30px;
+    text-align: center;
 }
 
 .item-quantita input {

@@ -21,7 +21,7 @@
         
         <!-- Filtri -->
         <div class="filtri-ordini">
-            <form action="${pageContext.request.contextPath}/ControlloOrdiniServlet" method="GET" class="filtri-form">
+            <form action="${pageContext.request.contextPath}/admin/ControlloOrdiniServlet" method="GET" class="filtri-form">
                 <div class="filtro-gruppo">
                     <label>Da data:</label>
                     <input type="date" name="dataDa" value="${dataDa}">
@@ -39,7 +39,7 @@
                 
                 <div class="filtro-azioni">
                     <button type="submit" class="btn-filtra">🔍 Filtra</button>
-                    <a href="${pageContext.request.contextPath}/ControlloOrdiniServlet" class="btn-reset">🔄 Reset</a>
+                    <a href="${pageContext.request.contextPath}/admin/ControlloOrdiniServlet" class="btn-reset">🔄 Reset</a>
                 </div>
             </form>
         </div>

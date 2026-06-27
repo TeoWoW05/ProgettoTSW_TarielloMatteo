@@ -50,7 +50,7 @@
                 %>
                 <li><span id="utente"><a href="${pageContext.request.contextPath}/ProfiloUtenteServlet"> <%= utente.getNickname() %> </a></span></li>
                 <% if (utente.isAdmin()) { %>
-        <li><a href="${pageContext.request.contextPath}/ControlloOrdiniServlet">Pannello Admin</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/ControlloOrdiniServlet">Pannello Admin</a></li>
         	 <% } %>
             <li><a href="${pageContext.request.contextPath}/LogoutServ">Logout</a></li>
             <% } %>

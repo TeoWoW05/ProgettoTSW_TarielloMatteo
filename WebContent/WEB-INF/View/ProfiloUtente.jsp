@@ -155,7 +155,7 @@
 					<h2>📦 Gestione Ordini</h2>
 					<p style="color: #ccc; margin-bottom: 20px;">Visualizza e
 						filtra tutti gli ordini dei clienti.</p>
-					<a href="${pageContext.request.contextPath}/ControlloOrdiniServlet"
+					<a href="${pageContext.request.contextPath}/admin/ControlloOrdiniServlet"
 						class="btn-primary"> 📋 Vai alla gestione ordini </a>
 				</div>
 				<%

@@ -20,7 +20,7 @@ import Model.Ordine;
 import Model.Utente;
 
 
-@WebServlet("/ControlloOrdiniServlet")
+@WebServlet("/admin/ControlloOrdiniServlet")
 public class ControlloOrdiniServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -45,18 +45,6 @@ public class ControlloOrdiniServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		HttpSession session = request.getSession(false);
-		
-		if(session == null || session.getAttribute("utente") == null) {
-			response.sendRedirect(request.getContextPath() + "/LogServlet");
-			return;
-		}
-		
-		Utente utente = (Utente) session.getAttribute("utente");
-		if(!utente.isAdmin()) {
-			response.sendRedirect(request.getContextPath()+"/");
-			return;
-		}
 		
 		 String dataDa = request.getParameter("dataDa");
 	        String dataA = request.getParameter("dataA");

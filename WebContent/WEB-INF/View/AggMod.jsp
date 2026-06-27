@@ -11,7 +11,7 @@
         Prodotto prodotto = (Prodotto) request.getAttribute("prodotto");
         ArrayList<String> categorieProdotto = (ArrayList<String>) request.getAttribute("categorieProdotto");
         String titolo = (modifica != null && modifica) ? "Modifica Prodotto" : "Aggiungi Nuovo Prodotto";
-        String actionUrl = request.getContextPath() + "/AggiungiModificaProdottoServlet";
+        String actionUrl = request.getContextPath() + "/admin/AggiungiModificaProdottoServlet";
     %>
     <title><%= titolo %> - Admin Piece B Piece</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/General.css">

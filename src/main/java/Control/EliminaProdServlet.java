@@ -14,7 +14,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import Dao.DaoProdotto;
-@WebServlet("/EliminaProdServlet")
+@WebServlet("/admin/EliminaProdServlet")
 public class EliminaProdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 private DaoProdotto prodottoDao;
@@ -37,11 +37,7 @@ private DaoProdotto prodottoDao;
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
-        HttpSession session = request.getSession(false);
-        if (session == null || !"admin".equals(session.getAttribute("ruolo"))) {
-            response.sendRedirect(request.getContextPath() + "/LogServlet");
-            return;
-        }
+        HttpSession session = request.getSession();
         
         String idStr = request.getParameter("id");
         if (idStr == null || idStr.trim().isEmpty()) {

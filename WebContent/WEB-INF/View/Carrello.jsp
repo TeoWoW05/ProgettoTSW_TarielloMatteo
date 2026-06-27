@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/Carrello.css">
     <script> const contextPath = "${pageContext.request.contextPath}"; </script>
      <script src="${pageContext.request.contextPath}/javascript/Modali.js"></script>
+     <script src="${pageContext.request.contextPath}/javascript/Ajax.js"></script>
 </head>
 <body>
 
@@ -84,16 +85,10 @@
                             </div>
                             
                             <div class="item-quantita">
-                                <form action="${pageContext.request.contextPath}/CarrelloServlet" method="GET" style="display: flex; align-items: center; gap: 5px;">
-                                    <input type="hidden" name="action" value="aggiorna">
-                                    <input type="hidden" name="id" value="<%= item.getProdotto().getCodiceProdotto() %>">
-                                    <button type="button" onclick="this.parentNode.querySelector('input[name=qty]').stepDown(); this.parentNode.submit();">−</button>
-                                    <input type="number" name="qty" value="<%= item.getQuantita() %>" 
-                                           min="1" max="<%= item.getProdotto().getQuantitaMagazzino() %>" 
-                                           style="width: 50px; text-align: center;" readonly>
-                                    <button type="button" onclick="this.parentNode.querySelector('input[name=qty]').stepUp(); this.parentNode.submit();">+</button>
-                                </form>
-                            </div>
+    						<button type="button" onclick="aggiornaQuantitàCarrello(<%= item.getProdotto().getCodiceProdotto() %>, -1)">−</button>
+    							<span id="qty-<%= item.getProdotto().getCodiceProdotto() %>"><%= item.getQuantita() %></span>
+    						<button type="button" onclick="aggiornaQuantitàCarrello(<%= item.getProdotto().getCodiceProdotto() %>, 1)">+</button>
+							</div>
                             
                             <div class="item-subtotale">
                                 € <%= String.format("%.2f", item.getSubtotale()).replace(",", ".") %>

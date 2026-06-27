@@ -51,7 +51,7 @@
 	if(isAdmin){
 %>
 
-	<a href="${pageContext.request.contextPath}/AggiungiModificaProdottoServlet" class="btn-aggiungi">
+	<a href="${pageContext.request.contextPath}/admin/AggiungiModificaProdottoServlet" class="btn-aggiungi">
 	+ Aggiungi Prodotto
 	</a>
 	<% } %>
@@ -195,7 +195,7 @@
                     if (isAdmin) {
                     %>
                         <div class="admin-azioni">
-                            <a href="${pageContext.request.contextPath}/AggiungiModificaProdottoServlet?id=<%= p.getCodiceProdotto() %>" 
+                            <a href="${pageContext.request.contextPath}/admin/AggiungiModificaProdottoServlet?id=<%= p.getCodiceProdotto() %>" 
                                class="btn-modifica">Modifica</a>
                             
                             
