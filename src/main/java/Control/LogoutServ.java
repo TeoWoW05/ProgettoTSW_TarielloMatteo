@@ -30,7 +30,7 @@ public class LogoutServ extends HttpServlet {
         }
         
        
-        response.sendRedirect(request.getContextPath() + "/HPServlet");
+        response.sendRedirect(request.getContextPath() + "/LogServlet");
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
