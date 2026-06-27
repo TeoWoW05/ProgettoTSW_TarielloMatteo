@@ -58,3 +58,5 @@ function logPass() {
 		              closeDeleteModal();
 		          }
 		      }
+			  
+			  

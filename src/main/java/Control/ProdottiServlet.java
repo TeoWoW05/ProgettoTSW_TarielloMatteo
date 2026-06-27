@@ -63,10 +63,11 @@ public class ProdottiServlet extends HttpServlet {
             ArrayList<Categoria> categorie = categoriaDao.doRetrieveAll();
             request.setAttribute("categorie", categorie);
             
+            //Creiamo mappa che associ la categoria con il prodotto
             
-            Map<Integer, List<String>> categorieProdotti = new HashMap<>();
+            Map<Integer, ArrayList<String>> categorieProdotti = new HashMap<>();
             for (Prodotto p : prodotti) {
-                List<String> cats = prodottoDao.getCategorieProdotto(p.getCodiceProdotto());
+                ArrayList<String> cats = prodottoDao.getCategorieProdotto(p.getCodiceProdotto());
                 categorieProdotti.put(p.getCodiceProdotto(), cats);
                 request.setAttribute("categorie_" + p.getCodiceProdotto(), cats);
             }

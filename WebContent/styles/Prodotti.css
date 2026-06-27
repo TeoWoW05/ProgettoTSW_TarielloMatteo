@@ -127,20 +127,22 @@
 
 /* Card prodotto */
 .prodotto-card {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     padding: 20px;
-    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    transition: all 0.3s ease;
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
 .prodotto-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 
+                0 0 20px rgba(255, 255, 255, 0.05); 
+    background: rgba(0, 0, 0, 0.40);  
+    border-color: rgba(255, 255, 255, 0.4);  
 }
 
 /* Immagine prodotto */
