@@ -97,7 +97,11 @@ function aggiornaQuantitàCarrello(id, delta) {
                     qtySpan.textContent = nuovaQty;
                     // Aggiorna anche il subtotale e il totale
                     aggiornaContatoreCarrello(risposta.numeroProdotti);
-                    location.reload();  // Opzionale: ricarica per aggiornare i prezzi
+                  	
+					var totaleSpan = document.querySelector('.riepilogo-riga.totale span:last-child');
+					              if (totaleSpan) {
+					                  totaleSpan.textContent = '€ ' + risposta.totale.toFixed(2).replace('.', ',');
+					              }
                 }
             }
         };
