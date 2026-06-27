@@ -56,18 +56,7 @@
         <button class="carosello-btn carosello-prev" onclick="cambiaSlide(-1)">&#10094;</button>
         <button class="carosello-btn carosello-next" onclick="cambiaSlide(1)">&#10095;</button>
 
-        <!-- Pallini -->
-        <div class="carosello-dots">
-            <%
-            if (prodottiCarosello != null) {
-                for (int i = 0; i < prodottiCarosello.size(); i++) {
-            %>
-                <span class="dot <%= i == 0 ? "active" : "" %>" onclick="vaiASlide(<%= i %>)"></span>
-            <%
-                }
-            }
-            %>
-        </div>
+      
     </div><!-- chiusura carosello-container -->
 
     <!-- Prodotti in evidenza -->
