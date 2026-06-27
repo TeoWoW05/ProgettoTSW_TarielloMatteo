@@ -61,7 +61,7 @@
             <table class="tabella-ordini">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                       
                         <th>Data</th>
                         <th>Cliente</th>
                         <th>Totale</th>
@@ -76,7 +76,7 @@
                         for (Ordine o : ordini) {
                     %>
                         <tr>
-                            <td>#<%= o.getId() %></td>
+                            
                             <td><%= o.getDataFormattata() %></td>
                             <td><%= o.getEmail_utente() %></td>
                             <td><%= o.getPrezzoFormattato() %></td>
