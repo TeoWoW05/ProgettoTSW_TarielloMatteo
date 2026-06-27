@@ -29,14 +29,21 @@ body {
 
 .main-content{
 	flex:1;
+	width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .reglog {
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    width: 90%;                
+    width: 1000%;                
     max-width: 500px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -53,7 +60,7 @@ body {
 h1 {
     text-align: center;
     color: #ffffff;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
     margin-bottom: 35px;
     font-weight: 700;
     letter-spacing: -1px;
@@ -84,6 +91,7 @@ h1::after {
     display: flex;           
     align-items: center;
     margin-bottom: 15px;
+    gap: 0;
 }
 
 .reglog .label label {
@@ -98,8 +106,8 @@ h1::after {
 .reglog .label input {
     flex: 1;
     min-width: 0;
-    padding: 10px 12px;
-    background: black;
+    padding: 10px 15px;
+    background: rgba(0,0,0,0.6);
     border: 2px solid lightgrey;
     border-radius: 8px;
     font-size: 1rem;
@@ -112,6 +120,7 @@ h1::after {
     outline: none;
     border-color: #ffffff;
     background: #222;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
 }
 
 .reglog input:hover:not(:focus) {
@@ -129,12 +138,15 @@ h1::after {
     gap: 8px;
     margin-top: 5px;
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .reglog #mostraPass input[type="checkbox"] {
-    width: auto;
+    width: 18px;
+    height: 18px;
     margin: 0;
-    order: -1;
+    cursor: pointer;
+    accent-color: #fff;
 }
 
 .reglog input[type=submit] {
@@ -159,6 +171,11 @@ h1::after {
     background: #555;
     border-color: white;
 }
+
+.reglog input[type="submit"]:active {
+    transform: translateY(0); 
+}
+
 
 .page-wrapper {
     display: flex;
@@ -226,28 +243,24 @@ h1::after {
         padding: 30px 25px;
         max-width: 450px;
     }
-    
-    h1 {
-        font-size: 2.2rem;
-    }
 }
 
 /* Mobile landscape e medio */
 @media (max-width: 600px) {
     .reglog {
         padding: 25px 20px;
-        width: 95%;
+        width: 90%;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
         margin-bottom: 25px;
     }
    
     .reglog .label {
         flex-direction: column;
         align-items: stretch;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
 
     .reglog .label label {
@@ -255,10 +268,13 @@ h1::after {
         text-align: left;
         padding-right: 0;
         margin-bottom: 6px;
+        font-size:0.8rem;
     }
 
     .reglog .label input {
         width: 100%;
+        padding: 14px 15px;
+        font-size: 16px;
     }
 
     .reglog #mostraPass {
@@ -269,7 +285,7 @@ h1::after {
     
     .reglog input[type=submit] {
         font-size: 1rem;
-        padding: 12px;
+        padding: 16px;
     }
 }
 
@@ -279,38 +295,62 @@ h1::after {
 @media (max-width: 480px) {
     .reglog {
         padding: 20px 15px;
-        width: 95%;
+        width: 92%;
     }
 
     h1 {
-        font-size: 1.7rem;
-    }
-    
-    .reglog .label label {
-        font-size: 0.8rem;
-    }
-    
-    .reglog .label input {
-        padding: 8px 10px;
-        font-size: 0.9rem;
+        font-size: 1.5rem;
     }
     
     .reglog input[type=submit] {
-        font-size: 0.9rem;
-        padding: 10px;
+        font-size: 0.95rem;
+        padding: 14px;
         letter-spacing: 1px;
     }
 }
 
 /* Landscape orientation fix */
 @media (max-height: 500px) and (orientation: landscape) {
+    body{
+    align-items: flex-start;
+    overflow-y: auto;
+    }
+    
     .reglog {
-        padding: 20px;
+        padding: 20px 25px;
+        margin: 20px auto;
     }
     
     h1 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         margin-bottom: 15px;
+    }
+    
+    .reglog .label {
+        margin-bottom: 10px;
+    }
+    
+    .reglog .label input {
+        padding: 8px 12px;
+    }
+    
+    .reglog input[type=submit] {
+        margin-top: 15px;
+        padding: 10x;
+    }
+    
+    .main-content {
+        padding: 10px 20px;
+    }
+}
+
+@media (max-height: 700px) {
+    .reglog {
+        padding: 25px 30px;
+    }
+    
+    h1 {
+        margin-bottom: 20px;
     }
     
     .reglog .label {
@@ -319,10 +359,5 @@ h1::after {
     
     .reglog input[type=submit] {
         margin-top: 15px;
-        padding: 8px;
-    }
-    
-    .main-content {
-        padding: 20px;
     }
 }
