@@ -180,6 +180,8 @@ public class CheckoutServlet extends HttpServlet {
 	            totale = carrello.getTotale();
 	        }
 	        
+	        
+	        
 	        // Crea l'ordine
 	        Ordine ordine = new Ordine();
 	        ordine.setEmail_utente(utente.getEmail());
@@ -192,6 +194,9 @@ public class CheckoutServlet extends HttpServlet {
 	        ordine.setScadenza(scadenza.trim());
 	        ordine.setCVV(Integer.parseInt(cvvPulito));
 	        ordine.setStato("In elaborazione");
+	        
+	        int progressivo = ordineDao.getProssimoProgressivo(utente.getEmail());
+	        ordine.setNumeroProgressivo(progressivo);
 	        
 	        ordineDao.doSave(ordine);
 	        
@@ -208,7 +213,7 @@ public class CheckoutServlet extends HttpServlet {
 	            }
 	        }
 	        
-	        session.setAttribute("ordineCompletato", "Ordine #" + ordine.getId() + " effettuato con successo!");
+	        session.setAttribute("ordineCompletato", "Ordine #" + progressivo + " effettuato con successo!");
 	        response.sendRedirect(request.getContextPath() + "/CheckoutConfermaServlet");
 	        
 	    } catch (SQLException e) {

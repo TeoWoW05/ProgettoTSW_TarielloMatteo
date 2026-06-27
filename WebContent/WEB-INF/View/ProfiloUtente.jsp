@@ -177,7 +177,7 @@
 						%>
 						<div class="ordine-item">
 							<div class="ordine-header">
-								<span class="ordine-id">Ordine #<%=ordine.getId()%></span> <span
+								<span class="ordine-id">Ordine <%=ordine.getNumeroOrdineFormattato()%></span> <span
 									class="ordine-data"><%=ordine.getDataFormattata()%></span> <span
 									class="ordine-stato stato-<%=ordine.getStato().toLowerCase().replace(" ", "-")%>">
 									<%=ordine.getStato()%>

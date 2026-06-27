@@ -123,6 +123,14 @@ public void setStato(String stato) {
 	this.stato = stato;
 }
 
+public int getNumeroProgressivo() { 
+	return numeroProgressivo; 
+	
+}
+public void setNumeroProgressivo(int numeroProgressivo) { 
+	this.numeroProgressivo = numeroProgressivo; 
+	}
+
 public String getDataFormattata() {
     if (data_ordine != null) {
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -148,6 +156,10 @@ public String getCartaFormattata() {
     return "****";
 }
 
+public String getNumeroOrdineFormattato() {
+    return "#" + numeroProgressivo;
+}
+
 
 
 
@@ -163,5 +175,5 @@ private int cap;
 private String civico;
 private Timestamp data_ordine;
 private String stato;
-
+private int numeroProgressivo;
 }

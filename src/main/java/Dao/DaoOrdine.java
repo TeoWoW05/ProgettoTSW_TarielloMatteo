@@ -23,8 +23,8 @@ public class DaoOrdine implements DaoOrdiniInterface{
 	}
 	
 	public void doSave(Ordine ordine) throws SQLException{
-		String sql = "INSERT INTO " + TABLE_NAME + " (email_utente, totale_ordine, civico, cap, città, via, CVV, pan, scadenza, stato)"
-				+"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO " + TABLE_NAME + " (email_utente, totale_ordine, civico, cap, città, via, CVV, pan, scadenza, stato, numero_progressivo)"
+				+"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try (Connection conn = ds.getConnection();
 	             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -39,6 +39,7 @@ public class DaoOrdine implements DaoOrdiniInterface{
 	            ps.setLong(8, ordine.getPan());
 	            ps.setString(9, ordine.getScadenza());         
 	            ps.setString(10, ordine.getStato() != null ? ordine.getStato() : "In elaborazione");
+	            ps.setInt(11, ordine.getNumeroProgressivo());
 	            
 	            ps.executeUpdate();
 	            
@@ -134,6 +135,23 @@ public class DaoOrdine implements DaoOrdiniInterface{
 	        }
 	        return ordini;
 	    }
+	    
+	    public synchronized int getProssimoProgressivo(String emailUtente) throws SQLException {
+	        String sql = "SELECT COALESCE(MAX(numero_progressivo), 0) + 1 FROM " + TABLE_NAME + " WHERE email_utente = ?";
+	        
+	        try (Connection conn = ds.getConnection();
+	             PreparedStatement ps = conn.prepareStatement(sql)) {
+	            
+	            ps.setString(1, emailUtente);
+	            
+	            try (ResultSet rs = ps.executeQuery()) {
+	                if (rs.next()) {
+	                    return rs.getInt(1);
+	                }
+	            }
+	        }
+	        return 1;
+	    }
 	 
 	 private Ordine creaOrdine(ResultSet rs) throws SQLException {
 	        Ordine ordine = new Ordine();
@@ -149,6 +167,7 @@ public class DaoOrdine implements DaoOrdiniInterface{
 	        ordine.setCap(rs.getInt("cap"));
 	        ordine.setCivico(rs.getString("civico"));
 	        ordine.setStato(rs.getString("stato"));
+	        ordine.setNumeroProgressivo(rs.getInt("numero_progressivo"));
 	        return ordine;
 	    }
 
