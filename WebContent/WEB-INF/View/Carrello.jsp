@@ -86,8 +86,9 @@
                             
                             <div class="item-quantita">
     						<button type="button" onclick="aggiornaQuantitàCarrello(<%= item.getProdotto().getCodiceProdotto() %>, -1)">−</button>
-    							<span id="qty-<%= item.getProdotto().getCodiceProdotto() %>"><%= item.getQuantita() %></span>
-    						<button type="button" onclick="aggiornaQuantitàCarrello(<%= item.getProdotto().getCodiceProdotto() %>, 1)">+</button>
+    							<span id="qty-<%= item.getProdotto().getCodiceProdotto() %>"data-max="<%= item.getProdotto().getQuantitaMagazzino() %>"><%= item.getQuantita() %></span>
+    						<button type="button"  id="btn-plus-<%= item.getProdotto().getCodiceProdotto() %>"
+            				<%= item.getQuantita() >= item.getProdotto().getQuantitaMagazzino() ? "disabled" : "" %> onclick="aggiornaQuantitàCarrello(<%= item.getProdotto().getCodiceProdotto() %>, 1)">+</button>
 							</div>
                             
                             <div class="item-subtotale">

@@ -56,42 +56,45 @@ public class CarrelloServlet extends HttpServlet {
 
 		try {
 			if ("aggiungi".equals(action)) {
-
-				int id = Integer.parseInt(request.getParameter("id"));
-				int qty = 1;
-				if (request.getParameter("qty") != null) {
-					qty = Integer.parseInt(request.getParameter("qty"));
-				}
-
-				Prodotto prodotto = prodottoDao.doRetrieveByKey(id);
-				if (prodotto != null) {
-					boolean trovato = false;
-					for (CarrelloItem item : carrello.getItems()) {
-						if (item.getProdotto().getCodiceProdotto() == id) {
-							trovato = true;
-							break;
-						}
-					}
-
-					carrello.aggiungiProdotto(prodotto, qty);
-					session.setAttribute("carrello", carrello);
-
-					if ("true".equals(ajax)) {
-						inviaRispostaJSON(response, true, trovato ? "Quantità aggiornata!" : "Prodotto aggiunto!",
-								carrello);
-						return;
-					}
-
-					if (trovato) {
-						session.setAttribute("messaggioSuccesso", "Quantità aggiornata!");
-					} else {
-						session.setAttribute("messaggioSuccesso", "Prodotto aggiunto!");
-					}
-				}
-				if (!"true".equals(ajax)) {
-					response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
-				}
-
+			    
+			    int id = Integer.parseInt(request.getParameter("id"));
+			    int qty = 1;
+			    if (request.getParameter("qty") != null) {
+			        qty = Integer.parseInt(request.getParameter("qty"));
+			    }
+			    
+			    Prodotto prodotto = prodottoDao.doRetrieveByKey(id);
+			    if (prodotto != null) {
+			        // ✅ Controlla se la quantità richiesta supera il magazzino
+			        int qtyNelCarrello = 0;
+			        for (CarrelloItem item : carrello.getItems()) {
+			            if (item.getProdotto().getCodiceProdotto() == id) {
+			                qtyNelCarrello = item.getQuantita();
+			                break;
+			            }
+			        }
+			        
+			        if (qtyNelCarrello + qty > prodotto.getQuantitaMagazzino()) {
+			            if ("true".equals(ajax)) {
+			                inviaRispostaJSON(response, false, 
+			                    "Limite raggiunto! Disponibili: " + prodotto.getQuantitaMagazzino(), carrello);
+			                return;
+			            }
+			            session.setAttribute("errore", "Quantità massima raggiunta!");
+			            response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
+			            return;
+			        }
+			        
+			        carrello.aggiungiProdotto(prodotto, qty);
+			        session.setAttribute("carrello", carrello);
+			        
+			        if ("true".equals(ajax)) {
+			            boolean trovato = qtyNelCarrello > 0;
+			            inviaRispostaJSON(response, true, 
+			                trovato ? "Quantità aggiornata!" : "Prodotto aggiunto!", carrello);
+			            return;
+			        }
+			    }
 			} else if ("rimuovi".equals(action)) {
 
 				int id = Integer.parseInt(request.getParameter("id"));

@@ -83,6 +83,8 @@ function aggiornaQuantitàCarrello(id, delta) {
         var qtyAttuale = parseInt(qtySpan.textContent);
         var nuovaQty = qtyAttuale + delta;
         
+		var maxQty = parseInt(qtySpan.getAttribute('data-max'));
+		
         // Controllo limiti
         if (nuovaQty < 1) return;
         
@@ -98,6 +100,11 @@ function aggiornaQuantitàCarrello(id, delta) {
                     // Aggiorna anche il subtotale e il totale
                     aggiornaContatoreCarrello(risposta.numeroProdotti);
                   	
+					var btnPlus = document.getElementById('btn-plus-' + id);
+					             if (btnPlus) {
+					                 btnPlus.disabled = (nuovaQty >= maxQty);
+					             }
+								 
 					var totaleSpan = document.querySelector('.riepilogo-riga.totale span:last-child');
 					              if (totaleSpan) {
 					                  totaleSpan.textContent = '€ ' + risposta.totale.toFixed(2).replace('.', ',');

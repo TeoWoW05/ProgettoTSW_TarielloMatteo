@@ -178,7 +178,7 @@
                         %>
                             <button type="button" 
         					class="btn-carrello" 
-        					onclick="aggiungiAlCarrello(<%= p.getCodiceProdotto() %>, 1, this)">
+        					onclick="aggiungiAlCarrello(<%= p.getCodiceProdotto() %>, 1,<%= p.getQuantitaMagazzino() %>, this)">
     						🛒 Aggiungi al carrello
 							</button>
                         <%
