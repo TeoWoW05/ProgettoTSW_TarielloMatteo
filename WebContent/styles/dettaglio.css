@@ -177,21 +177,21 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: all 0.3s;
+    cursor:pointer;
 }
 
-.btn-carrello {
-    background: #f59e0b;
-    color: #000;
+.btn-carrello{
+	background-color: #ffffff;
 }
 
 .btn-carrello:hover {
-    background: #d97706;
+    background-color: rgb(192, 192, 192);
     transform: translateY(-2px);
 }
 
 .btn-acquista {
-    background: #4CAF50;
-    color: #fff;
+    background: rgb(0, 0, 0);
+    color: white;
 }
 
 .btn-acquista:hover {

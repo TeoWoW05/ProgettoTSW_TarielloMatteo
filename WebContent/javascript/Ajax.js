@@ -85,8 +85,9 @@ function aggiornaQuantitàCarrello(id, delta) {
         
 		var maxQty = parseInt(qtySpan.getAttribute('data-max'));
 		
-        // Controllo limiti
+        
         if (nuovaQty < 1) return;
+		if(nuovaQty > maxQty) return;
         
         // Chiamata AJAX
         var xhr = new XMLHttpRequest();
@@ -104,6 +105,11 @@ function aggiornaQuantitàCarrello(id, delta) {
 					             if (btnPlus) {
 					                 btnPlus.disabled = (nuovaQty >= maxQty);
 					             }
+								 
+					var subtotaleSpan = document.getElementById('subtotale-' + id);
+					if(subtotaleSpan){
+						subtotaleSpan.textContent = '€ '+ risposta.subtotale.toFixed(2).replace('.',',');
+					}
 								 
 					var totaleSpan = document.querySelector('.riepilogo-riga.totale span:last-child');
 					              if (totaleSpan) {

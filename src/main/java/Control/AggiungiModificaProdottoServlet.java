@@ -72,7 +72,7 @@ public class AggiungiModificaProdottoServlet extends HttpServlet {
                 request.setAttribute("modifica", true);  // Flag per la JSP
                 
             } else {
-                // === AGGIUNTA ===
+               
                 request.setAttribute("modifica", false);  // Flag per la JSP
             }
             

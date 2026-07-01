@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 import Dao.DaoOrdine;
 import Dao.DaoProdotto;
 import Model.Carrello;
+import Model.CarrelloItem;
 import Model.Ordine;
 import Model.Prodotto;
 import Model.Utente;
@@ -161,6 +162,9 @@ public class CheckoutServlet extends HttpServlet {
 	        Integer buyNowId = (Integer) session.getAttribute("buyNowId");
 	        Integer buyNowQty = (Integer) session.getAttribute("buyNowQty");
 	        
+	        int prodottoId = 0;
+	        int quantitaOrdinata = 0;
+	        
 	        if (buyNowId != null && buyNowQty != null) {
 	            // Acquisto diretto: calcola dal prodotto
 	            Prodotto prodotto = prodottoDao.doRetrieveByKey(buyNowId);
@@ -170,6 +174,9 @@ public class CheckoutServlet extends HttpServlet {
 	                return;
 	            }
 	            totale = prodotto.getCosto() * buyNowQty;
+	            prodottoId = buyNowId;
+	            quantitaOrdinata = buyNowQty;
+	            
 	        } else {
 	            // Acquisto da carrello
 	            Carrello carrello = (Carrello) session.getAttribute("carrello");
@@ -200,12 +207,27 @@ public class CheckoutServlet extends HttpServlet {
 	        
 	        ordineDao.doSave(ordine);
 	        
-	        // ✅ Se è acquisto diretto, rimuovi solo i dati buynow (NON il carrello)
+	   
+	        if (buyNowId != null) {
+	        	Prodotto prodotto = prodottoDao.doRetrieveByKey(buyNowId);
+	            int nuovaQuantita = prodotto.getQuantitaMagazzino() - buyNowQty;
+	            prodottoDao.updateQuantita(buyNowId, nuovaQuantita);
+	        } else {
+	           
+	        	Carrello carrello = (Carrello) session.getAttribute("carrello");
+	            for (CarrelloItem item : carrello.getItems()) {
+	                int idProdotto = item.getProdotto().getCodiceProdotto();
+	                int qtyOrdinata = item.getQuantita();
+	                Prodotto prodotto = prodottoDao.doRetrieveByKey(idProdotto);
+	                int nuovaQuantita = prodotto.getQuantitaMagazzino() - qtyOrdinata;
+	                prodottoDao.updateQuantita(idProdotto, nuovaQuantita);
+	            }
+	        }
+	        
 	        if (buyNowId != null) {
 	            session.removeAttribute("buyNowId");
 	            session.removeAttribute("buyNowQty");
 	        } else {
-	            // Se è acquisto da carrello, svuota il carrello
 	            Carrello carrello = (Carrello) session.getAttribute("carrello");
 	            if (carrello != null) {
 	                carrello.svuota();

@@ -81,7 +81,7 @@
                                         <%= item.getProdotto().getNome() %>
                                     </a>
                                 </h3>
-                                <p class="item-prezzo">€ <%= String.format("%.2f", item.getProdotto().getCosto()).replace(",", ".") %></p>
+                                <p class="item-prezzo">€ <%= String.format("%.2f", item.getProdotto().getCosto()).replace(".", ",") %></p>
                             </div>
                             
                             <div class="item-quantita">
@@ -91,8 +91,8 @@
             				<%= item.getQuantita() >= item.getProdotto().getQuantitaMagazzino() ? "disabled" : "" %> onclick="aggiornaQuantitàCarrello(<%= item.getProdotto().getCodiceProdotto() %>, 1)">+</button>
 							</div>
                             
-                            <div class="item-subtotale">
-                                € <%= String.format("%.2f", item.getSubtotale()).replace(",", ".") %>
+                            <div class="item-subtotale" id="subtotale-<%= item.getProdotto().getCodiceProdotto() %>">
+                                € <%= String.format("%.2f", item.getSubtotale()).replace(".", ",") %>
                             </div>
                             
                             <%
@@ -130,7 +130,7 @@
                     
                     <div class="riepilogo-riga totale">
                         <span>Totale:</span>
-                        <span>€ <%= String.format("%.2f", carrello.getTotale()).replace(",", ".") %></span>
+                        <span>€ <%= String.format("%.2f", carrello.getTotale()).replace(".", ",") %></span>
                     </div>
                     
                     <a href="${pageContext.request.contextPath}/CheckoutServlet" class="btn-acquista">

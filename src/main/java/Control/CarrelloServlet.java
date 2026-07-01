@@ -77,7 +77,7 @@ public class CarrelloServlet extends HttpServlet {
 			        if (qtyNelCarrello + qty > prodotto.getQuantitaMagazzino()) {
 			            if ("true".equals(ajax)) {
 			                inviaRispostaJSON(response, false, 
-			                    "Limite raggiunto! Disponibili: " + prodotto.getQuantitaMagazzino(), carrello);
+			                    "Limite raggiunto! Disponibili: " + prodotto.getQuantitaMagazzino(), carrello, id);
 			                return;
 			            }
 			            session.setAttribute("errore", "Quantità massima raggiunta!");
@@ -91,7 +91,7 @@ public class CarrelloServlet extends HttpServlet {
 			        if ("true".equals(ajax)) {
 			            boolean trovato = qtyNelCarrello > 0;
 			            inviaRispostaJSON(response, true, 
-			                trovato ? "Quantità aggiornata!" : "Prodotto aggiunto!", carrello);
+			                trovato ? "Quantità aggiornata!" : "Prodotto aggiunto!", carrello,id);
 			            return;
 			        }
 			    }
@@ -101,7 +101,7 @@ public class CarrelloServlet extends HttpServlet {
 				carrello.rimuoviProdotto(id);
 
 				if ("true".equals(ajax)) {
-					inviaRispostaJSON(response, true, "Prodotto rimosso!", carrello);
+					inviaRispostaJSON(response, true, "Prodotto rimosso!", carrello, id);
 					return;
 				}
 
@@ -115,7 +115,7 @@ public class CarrelloServlet extends HttpServlet {
 				carrello.aggiornaQuantita(id, qty);
 
 				if ("true".equals(ajax)) {
-					inviaRispostaJSON(response, true, "Quantità aggiornata!", carrello);
+					inviaRispostaJSON(response, true, "Quantità aggiornata!", carrello,id);
 					return;
 				}
 
@@ -164,21 +164,46 @@ public class CarrelloServlet extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
+	
+	//per clear
+	private void inviaRispostaJSON(HttpServletResponse response, boolean successo, 
+	        String messaggio, Carrello carrello) throws IOException {
+	    
+	    response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
+	    PrintWriter out = response.getWriter();
 
-	private void inviaRispostaJSON(HttpServletResponse response, boolean successo, String messaggio, Carrello carrello)
+	    out.print("{");
+	    out.print("\"successo\":" + successo + ",");
+	    out.print("\"messaggio\":\"" + messaggio + "\",");
+	    out.print("\"numeroProdotti\":" + carrello.getNumeroProdotti() + ",");
+	    out.print("\"totale\":" + carrello.getTotale() + ",");
+	    out.print("\"subtotale\":0");
+	    out.print("}");
+	    out.flush();
+	}
+	
+	private void inviaRispostaJSON(HttpServletResponse response, boolean successo, String messaggio, Carrello carrello, int idProdotto)
 			throws IOException {
+		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-
-// Usa PrintWriter
 		PrintWriter out = response.getWriter();
+		
+		float subtotale = 0;
+		for(CarrelloItem item : carrello.getItems()) {
+			if(item.getProdotto().getCodiceProdotto() == idProdotto) {
+				subtotale = item.getSubtotale();
+				break;
+			}
+		}
 
-// Crea JSON semplice
 		out.print("{");
 		out.print("\"successo\":" + successo + ",");
 		out.print("\"messaggio\":\"" + messaggio + "\",");
 		out.print("\"numeroProdotti\":" + carrello.getNumeroProdotti() + ",");
-		out.print("\"totale\":" + carrello.getTotale());
+		out.print("\"totale\":" + carrello.getTotale() + ",");
+		out.print("\"subtotale\":" + subtotale);
 		out.print("}");
 		out.flush();
 	}
